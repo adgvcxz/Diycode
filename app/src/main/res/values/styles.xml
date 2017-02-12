@@ -16,4 +16,16 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+
+    <style name="DrawerTextStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">48dp</item>
+        <item name="android:drawablePadding">48dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:paddingTop">24dp</item>
+        <item name="android:paddingBottom">24dp</item>
+        <item name="android:textColor">@color/firstTextColor</item>
+    </style>
+
 </resources>

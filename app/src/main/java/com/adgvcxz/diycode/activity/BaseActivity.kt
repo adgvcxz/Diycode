@@ -30,24 +30,20 @@ abstract class BaseActivity<out T : BaseActivityViewModel, out B : ViewDataBindi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding.setVariable(BR.model, viewModel)
-        val toolbar: Toolbar? = dataBinding.root.findViewById(R.id.toolbar) as Toolbar?
-        if (toolbar != null) {
-            setSupportActionBar(toolbar)
-        }
     }
 
-    override fun onSaveInstanceState(outState: Bundle?) {
-        super.onSaveInstanceState(outState)
-        outState?.putParcelable(SaveStateValue, viewModel)
-    }
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
-        super.onRestoreInstanceState(savedInstanceState)
-        val model = savedInstanceState?.getParcelable<BaseActivityViewModel>(SaveStateValue)
-        if (model != null) {
-            viewModel.restore(model)
-        }
-    }
+//    override fun onSaveInstanceState(outState: Bundle?) {
+//        super.onSaveInstanceState(outState)
+//        outState?.putParcelable(SaveStateValue, viewModel)
+//    }
+//
+//    override fun onRestoreInstanceState(savedInstanceState: Bundle?) {
+//        super.onRestoreInstanceState(savedInstanceState)
+//        val model = savedInstanceState?.getParcelable<BaseActivityViewModel>(SaveStateValue)
+//        if (model != null) {
+//            viewModel.restore(model)
+//        }
+//    }
 
     abstract fun generateViewModel(): T
 }

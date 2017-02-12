@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.adgvcxz.diycode.viewmodel.DrawerMenuFragmentViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="188dp"
+            android:background="@color/colorAccent">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="32dp"
+                app:imageUrl="@{model.avatar}"
+                app:placeholderImage="@mipmap/ic_launcher" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="48dp"
+                android:layout_marginTop="132dp"
+                app:tt="@{model.name}" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/DrawerTextStyle"
+            android:drawableLeft="@mipmap/ic_drawer_edit"
+            android:text="我的帖子" />
+
+    </LinearLayout>
+</layout>

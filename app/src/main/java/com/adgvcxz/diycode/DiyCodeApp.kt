@@ -1,6 +1,7 @@
 package com.adgvcxz.diycode
 
 import android.app.Application
+import com.facebook.drawee.backends.pipeline.Fresco
 
 /**
  * zhaowei
@@ -8,4 +9,8 @@ import android.app.Application
  */
 class DiyCodeApp : Application() {
 
+    override fun onCreate() {
+        super.onCreate()
+        Fresco.initialize(this)
+    }
 }
