@@ -35,6 +35,11 @@ abstract class BaseActivity<out T : BaseActivityViewModel, out B : ViewDataBindi
         viewModel.onCreate(this)
     }
 
+    override fun onStop() {
+        super.onStop()
+        viewModel.onStop(this)
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         viewModel.onDestroy(this)

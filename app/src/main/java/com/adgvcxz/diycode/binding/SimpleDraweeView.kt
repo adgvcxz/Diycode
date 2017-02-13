@@ -62,5 +62,3 @@ fun SimpleDraweeView.loadImage(imageUrl: String, thumbnail: String?, maxSize: In
                 .subscribe { controller ->
                     this.controller = controller
                 }!!
-
-

@@ -1,9 +1,11 @@
 package com.adgvcxz.diycode.viewmodel
 
+import android.content.Intent
 import android.os.Parcel
 import android.os.Parcelable
-import android.util.Log
+import android.view.View
 import com.adgvcxz.diycode.R
+import com.adgvcxz.diycode.activity.LoginActivity
 import com.adgvcxz.diycode.observable.ObservableString
 
 /**
@@ -16,13 +18,12 @@ class DrawerMenuFragmentViewModel : BaseFragmentViewModel() {
     val avatar = ObservableString("https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png")
     var name = ObservableString("${System.currentTimeMillis()}")
 
-    override fun contentId(): Int {
-        return R.layout.fragment_drawer_menu
-    }
+    fun onClickAvatar(view: View) = view.context.startActivity(Intent(view.context, LoginActivity::class.java))
+
+    override fun contentId(): Int = R.layout.fragment_drawer_menu
 
     override fun restore(model: BaseFragmentViewModel) {
         if (model is DrawerMenuFragmentViewModel) {
-            Log.e("zhaow", model.name.get())
             name.set(model.name.get())
         }
     }
@@ -41,12 +42,10 @@ class DrawerMenuFragmentViewModel : BaseFragmentViewModel() {
     }
 
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-//        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         dest?.writeString(name.get())
     }
 
     override fun describeContents(): Int {
-//        throw UnsupportedOperationException("not implemented") //To change body of created functions use File | Settings | File Templates.
         return 0
     }
 

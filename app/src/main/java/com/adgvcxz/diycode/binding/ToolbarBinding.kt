@@ -10,7 +10,6 @@ import android.support.v7.widget.Toolbar
  */
 
 @BindingMethods(
-        BindingMethod(type = Toolbar::class, attribute = "onNavigationClick", method = "setOnNavigationClickListener")
+        BindingMethod(type = Toolbar::class, attribute = "onNavigationClick", method = "setNavigationOnClickListener")
 )
-
 object ToolbarBinding
