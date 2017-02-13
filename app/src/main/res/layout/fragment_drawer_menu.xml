@@ -31,14 +31,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="48dp"
-                android:layout_marginTop="132dp"
-                app:tt="@{model.name}" />
+                android:layout_marginTop="132dp" />
         </RelativeLayout>
 
         <TextView
             style="@style/DrawerTextStyle"
-            android:drawableLeft="@mipmap/ic_drawer_edit"
-            android:text="我的帖子" />
+            android:drawableLeft="@mipmap/ic_drawer_edit" />
 
     </LinearLayout>
 </layout>

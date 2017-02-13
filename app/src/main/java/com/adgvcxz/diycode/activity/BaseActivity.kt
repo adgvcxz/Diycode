@@ -8,6 +8,8 @@ import android.support.v7.widget.Toolbar
 import com.adgvcxz.diycode.BR
 import com.adgvcxz.diycode.viewmodel.BaseActivityViewModel
 import com.adgvcxz.diycode.R
+import com.adgvcxz.diycode.fragment.BaseFragment
+import com.adgvcxz.diycode.viewmodel.BaseFragmentViewModel
 
 /**
  * zhaowei
@@ -30,6 +32,16 @@ abstract class BaseActivity<out T : BaseActivityViewModel, out B : ViewDataBindi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         dataBinding.setVariable(BR.model, viewModel)
+        viewModel.onCreate(this)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        viewModel.onDestroy(this)
+    }
+
+    fun <T : BaseFragmentViewModel> generateFragment(t : T): BaseFragment<BaseFragmentViewModel, ViewDataBinding> {
+        return BaseFragment.newInstance(t)
     }
 
 //    override fun onSaveInstanceState(outState: Bundle?) {
