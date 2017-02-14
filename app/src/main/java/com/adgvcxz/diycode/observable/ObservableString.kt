@@ -3,14 +3,13 @@ package com.adgvcxz.diycode.observable
 import android.databinding.ObservableField
 import android.os.Parcel
 import android.os.Parcelable
-import android.util.Log
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/10.
  */
 
-class ObservableString(str: String? = ""): ObservableField<String>(str), Parcelable {
+class ObservableString(str: String? = "") : ObservableField<String>(str), Parcelable {
 
     val CREATOR: Parcelable.Creator<ObservableString> = object : Parcelable.Creator<ObservableString> {
 
@@ -21,9 +20,7 @@ class ObservableString(str: String? = ""): ObservableField<String>(str), Parcela
     }
 
 
-
     override fun writeToParcel(dest: Parcel?, flags: Int) {
-        Log.e("zhaow", "======")
         dest?.writeString(get())
     }
 

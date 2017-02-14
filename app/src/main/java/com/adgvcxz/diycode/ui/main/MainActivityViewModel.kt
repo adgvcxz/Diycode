@@ -1,4 +1,4 @@
-package com.adgvcxz.diycode.viewmodel
+package com.adgvcxz.diycode.ui.main
 
 import android.app.Activity
 import android.databinding.ObservableBoolean
@@ -6,6 +6,7 @@ import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.observable.ObservableString
 import com.adgvcxz.diycode.rxbus.ClickNavigation
 import com.adgvcxz.diycode.rxbus.RxBus
+import com.adgvcxz.diycode.ui.base.BaseActivityViewModel
 
 /**
  * zhaowei

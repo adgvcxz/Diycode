@@ -5,7 +5,7 @@
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.viewmodel.LoginActivityViewModel" />
+            type="com.adgvcxz.diycode.ui.login.LoginActivityViewModel" />
     </data>
 
     <LinearLayout
@@ -17,7 +17,7 @@
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin"
-        tools:context="com.adgvcxz.diycode.activity.LoginActivity">
+        tools:context="com.adgvcxz.diycode.ui.login.LoginActivity">
 
         <!-- Login progress -->
         <ProgressBar

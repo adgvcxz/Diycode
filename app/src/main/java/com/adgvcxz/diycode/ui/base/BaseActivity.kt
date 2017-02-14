@@ -1,4 +1,4 @@
-package com.adgvcxz.diycode.activity
+package com.adgvcxz.diycode.ui.base
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -6,10 +6,10 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import com.adgvcxz.diycode.BR
-import com.adgvcxz.diycode.viewmodel.BaseActivityViewModel
+import com.adgvcxz.diycode.ui.base.BaseActivityViewModel
 import com.adgvcxz.diycode.R
-import com.adgvcxz.diycode.fragment.BaseFragment
-import com.adgvcxz.diycode.viewmodel.BaseFragmentViewModel
+import com.adgvcxz.diycode.ui.base.BaseFragment
+import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
 
 /**
  * zhaowei

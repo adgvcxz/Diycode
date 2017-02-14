@@ -1,12 +1,13 @@
-package com.adgvcxz.diycode.viewmodel
+package com.adgvcxz.diycode.ui.main.drawer
 
 import android.content.Intent
 import android.os.Parcel
 import android.os.Parcelable
 import android.view.View
 import com.adgvcxz.diycode.R
-import com.adgvcxz.diycode.activity.LoginActivity
+import com.adgvcxz.diycode.ui.login.LoginActivity
 import com.adgvcxz.diycode.observable.ObservableString
+import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
 
 /**
  * zhaowei

@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.viewmodel.MainActivityViewModel" />
+            type="com.adgvcxz.diycode.ui.main.MainActivityViewModel" />
     </data>
 
     <android.support.v4.widget.DrawerLayout

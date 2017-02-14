@@ -1,4 +1,4 @@
-package com.adgvcxz.diycode.viewmodel
+package com.adgvcxz.diycode.ui.base
 
 import android.app.Activity
 import com.adgvcxz.diycode.util.ActivityLifeCycleEvent

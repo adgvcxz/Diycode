@@ -1,4 +1,4 @@
-package com.adgvcxz.diycode.fragment
+package com.adgvcxz.diycode.ui.base
 
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -8,7 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.adgvcxz.diycode.BR
-import com.adgvcxz.diycode.viewmodel.BaseFragmentViewModel
+import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
 
 /**
  * zhaowei

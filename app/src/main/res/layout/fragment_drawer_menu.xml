@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.viewmodel.DrawerMenuFragmentViewModel" />
+            type="com.adgvcxz.diycode.ui.main.drawer.DrawerMenuFragmentViewModel" />
     </data>
 
     <LinearLayout

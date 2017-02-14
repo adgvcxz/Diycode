@@ -1,11 +1,12 @@
-package com.adgvcxz.diycode.activity
+package com.adgvcxz.diycode.ui.main
 
 import android.os.Bundle
 import com.adgvcxz.diycode.databinding.ActivityMainBinding
-import com.adgvcxz.diycode.fragment.BaseFragment
-import com.adgvcxz.diycode.viewmodel.DrawerMenuFragmentViewModel
-import com.adgvcxz.diycode.viewmodel.HomeFragmentViewModel
-import com.adgvcxz.diycode.viewmodel.MainActivityViewModel
+import com.adgvcxz.diycode.ui.base.BaseFragment
+import com.adgvcxz.diycode.ui.base.BaseActivity
+import com.adgvcxz.diycode.ui.main.drawer.DrawerMenuFragmentViewModel
+import com.adgvcxz.diycode.ui.main.home.HomeFragmentViewModel
+import com.adgvcxz.diycode.ui.main.MainActivityViewModel
 
 /**
  * zhaowei

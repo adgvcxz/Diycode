@@ -1,10 +1,11 @@
-package com.adgvcxz.diycode.viewmodel
+package com.adgvcxz.diycode.ui.main.home
 
 import android.os.Parcel
 import android.view.View
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.rxbus.ClickNavigation
 import com.adgvcxz.diycode.rxbus.RxBus
+import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
 
 /**
  * zhaowei

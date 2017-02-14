@@ -36,7 +36,7 @@ class RetrofitHelper private constructor(){
             builder.addInterceptor(loggingInterceptor)
         }
         val gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
-        val retrofit = Retrofit.Builder().baseUrl("http://diycode.cc/api/v3")
+        val retrofit = Retrofit.Builder().baseUrl("http://diycode.cc/api/v3/")
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
