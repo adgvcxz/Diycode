@@ -7,13 +7,14 @@ import com.adgvcxz.diycode.observable.ObservableString
 import com.adgvcxz.diycode.rxbus.ClickNavigation
 import com.adgvcxz.diycode.rxbus.RxBus
 import com.adgvcxz.diycode.ui.base.BaseActivityViewModel
+import javax.inject.Inject
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/10.
  */
 
-class MainActivityViewModel : BaseActivityViewModel() {
+class MainActivityViewModel @Inject constructor() : BaseActivityViewModel() {
 
     val text = ObservableString("${System.currentTimeMillis()}")
 

@@ -1,6 +1,9 @@
 package com.adgvcxz.diycode
 
 import android.app.Application
+import com.adgvcxz.diycode.di.component.AppComponent
+import com.adgvcxz.diycode.di.component.DaggerAppComponent
+import com.adgvcxz.diycode.di.module.AppModule
 import com.adgvcxz.diycode.net.initX509
 import com.adgvcxz.diycode.net.setRetry
 import com.facebook.drawee.backends.pipeline.Fresco
@@ -13,9 +16,14 @@ import okhttp3.OkHttpClient
  */
 class DiyCodeApp : Application() {
 
+    companion object {
+        lateinit var appComponent: AppComponent
+    }
+
     override fun onCreate() {
         super.onCreate()
         initFresco()
+        appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
     }
 
     private fun initFresco() {

@@ -1,8 +1,6 @@
 package com.adgvcxz.diycode.util
 
 import android.util.SparseArray
-import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
-import java.io.IOException
 import java.net.HttpURLConnection
 
 /**
@@ -10,9 +8,15 @@ import java.net.HttpURLConnection
  * Created by zhaowei on 2017/2/14.
  */
 
-class Error(code: Int = Error.Unknown): Throwable() {
+class Error(private var code: Int = Error.Unknown) : Throwable() {
 
-    private val code = code
+    init {
+        if (map[code] == null) {
+            code = Error.Unknown
+        }
+    }
+
+    override val message: String get() = map[code]
 
     companion object {
 
@@ -24,7 +28,7 @@ class Error(code: Int = Error.Unknown): Throwable() {
         private val map = SparseArray<String>()
 
         init {
-            map.put(HttpURLConnection.HTTP_NOT_AUTHORITATIVE, "账号密码错误")
+            map.put(HttpURLConnection.HTTP_UNAUTHORIZED, "账号密码错误")
             map.put(Unknown, "未知错误")
             map.put(NetWorkNotConnected, "当前网络不可用")
             map.put(EmailNotNull, "邮箱不能为空")

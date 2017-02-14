@@ -5,18 +5,22 @@ import android.util.Log
 import android.view.View
 import com.adgvcxz.diycode.Config
 import com.adgvcxz.diycode.R
-import com.adgvcxz.diycode.net.RetrofitHelper
+import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.observable.ObservableString
 import com.adgvcxz.diycode.ui.base.BaseActivityViewModel
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import com.adgvcxz.diycode.util.httpScheduler
+import com.adgvcxz.diycode.util.toast
+import javax.inject.Inject
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/13.
  */
 
-class LoginActivityViewModel : BaseActivityViewModel() {
+class LoginActivityViewModel @Inject constructor() : BaseActivityViewModel() {
+
+    @Inject
+    lateinit var apiService: ApiService
 
     val email = ObservableString("")
     val password = ObservableString("")
@@ -29,12 +33,9 @@ class LoginActivityViewModel : BaseActivityViewModel() {
 
     }
 
-    fun login(view: View) {
-        LoginVerification.login(email.get(), password.get())
-                .subscribe({
+    fun login() {
+        verifyLogin().subscribe({
 
-                }, {
-
-                })
+        }, Throwable::toast)
     }
 }

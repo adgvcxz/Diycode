@@ -14,16 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by zhaowei on 2017/2/13.
  */
 
-class RetrofitHelper private constructor(){
+class RetrofitHelper {
 
-    private val apiService: ApiService
-    private object Inner {
-        val single = RetrofitHelper()
-    }
-
-    companion object {
-        fun getInstance(): ApiService = Inner.single.apiService
-    }
+    val apiService: ApiService
 
     init {
         val builder = OkHttpClient.Builder()
