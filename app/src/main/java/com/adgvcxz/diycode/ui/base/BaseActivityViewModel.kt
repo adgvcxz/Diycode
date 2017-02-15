@@ -4,6 +4,7 @@ import android.app.Activity
 import com.adgvcxz.diycode.util.ActivityLifeCycleEvent
 import com.adgvcxz.diycode.util.takeFirst
 import io.reactivex.ObservableTransformer
+import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.subjects.PublishSubject
 
@@ -14,7 +15,7 @@ import io.reactivex.subjects.PublishSubject
 
 abstract class BaseActivityViewModel {
 
-    protected val disposables = arrayListOf<Disposable>()
+    protected val disposables = CompositeDisposable()
     protected val lifecycleSubject = PublishSubject.create<ActivityLifeCycleEvent>()!!
 
     abstract fun contentId(): Int
@@ -35,14 +36,12 @@ abstract class BaseActivityViewModel {
 
     open fun onDestroy(activity: Activity) {
         lifecycleSubject.onNext(ActivityLifeCycleEvent.DESTROY)
-        disposables
-                .filterNot { it.isDisposed }
-                .forEach { it.dispose() }
+        disposables.dispose()
     }
 
     fun <T> bindUntilEvent(): ObservableTransformer<T, T> {
-        return ObservableTransformer { sourceObservable ->
-            sourceObservable.takeUntil(lifecycleSubject.takeFirst(ActivityLifeCycleEvent.DESTROY))
+        return ObservableTransformer {
+            it.takeUntil(lifecycleSubject.takeFirst(ActivityLifeCycleEvent.DESTROY))
         }
     }
 }

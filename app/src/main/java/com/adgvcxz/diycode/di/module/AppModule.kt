@@ -22,5 +22,4 @@ class AppModule(private val application: DiyCodeApp) {
     @Singleton
     fun provideApiService(): ApiService = RetrofitHelper().apiService
 
-
 }

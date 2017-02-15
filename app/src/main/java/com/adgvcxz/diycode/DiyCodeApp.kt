@@ -6,8 +6,11 @@ import com.adgvcxz.diycode.di.component.DaggerAppComponent
 import com.adgvcxz.diycode.di.module.AppModule
 import com.adgvcxz.diycode.net.initX509
 import com.adgvcxz.diycode.net.setRetry
+import com.adgvcxz.diycode.util.AppBlockCanaryContext
 import com.facebook.drawee.backends.pipeline.Fresco
 import com.facebook.imagepipeline.backends.okhttp3.OkHttpImagePipelineConfigFactory
+import com.github.moduth.blockcanary.BlockCanary
+import com.squareup.leakcanary.LeakCanary
 import okhttp3.OkHttpClient
 
 /**
@@ -17,13 +20,20 @@ import okhttp3.OkHttpClient
 class DiyCodeApp : Application() {
 
     companion object {
-        lateinit var appComponent: AppComponent
+
+        lateinit var instance: DiyCodeApp
+
+        val appComponent: AppComponent by lazy {
+            DaggerAppComponent.builder().appModule(AppModule(instance)).build()
+        }
     }
 
     override fun onCreate() {
         super.onCreate()
+        instance = this
         initFresco()
-        appComponent = DaggerAppComponent.builder().appModule(AppModule(this)).build()
+        LeakCanary.install(this)
+        BlockCanary.install(this, AppBlockCanaryContext()).start()
     }
 
     private fun initFresco() {

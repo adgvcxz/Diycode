@@ -19,6 +19,4 @@ interface AppComponent {
 
     fun apiService(): ApiService
 
-    fun inject(app: DiyCodeApp)
-
 }

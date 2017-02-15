@@ -22,6 +22,7 @@ fun LoginActivityViewModel.verifyLogin(): Observable<Token> {
             throw Error(PasswordNotNull)
         }
         apiService.getToken(Config.ClientId, Config.ClientSecret, Config.GrantType, email.get(), password.get())
+                .compose(bindUntilEvent<Token>())
                 .httpScheduler()
     }
 }

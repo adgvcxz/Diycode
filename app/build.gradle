@@ -52,6 +52,12 @@ dependencies {
 
     // Data Binding
     kapt 'com.android.databinding:compiler:2.2.3'
+
+    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5'
+    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5'
+
+    debugCompile 'com.github.markzhai:blockcanary-android:1.4.1'
+    releaseCompile 'com.github.markzhai:blockcanary-no-op:1.4.1'
 }
 
 kapt {

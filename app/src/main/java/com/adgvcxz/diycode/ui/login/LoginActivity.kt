@@ -11,7 +11,5 @@ class LoginActivity : BaseActivity<LoginActivityViewModel, ActivityLoginBinding>
     override fun initInject() {
         getActivityComponent().inject(this)
     }
-
-//    override fun generateViewModel(): LoginActivityViewModel = LoginActivityViewModel()
 }
 
