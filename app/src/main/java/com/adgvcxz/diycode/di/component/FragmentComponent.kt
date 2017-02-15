@@ -1,19 +1,25 @@
 package com.adgvcxz.diycode.di.component
 
-import android.app.Activity
-import android.databinding.ViewDataBinding
-import com.adgvcxz.diycode.ui.base.BaseFragment
-import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
+import android.support.v4.app.Fragment
+import com.adgvcxz.diycode.di.FragmentScope
+import com.adgvcxz.diycode.di.module.FragmentModule
+import com.adgvcxz.diycode.ui.base.DrawerMenuFragment
+import com.adgvcxz.diycode.ui.base.HomeFragment
+import dagger.Component
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/15.
  */
-
+@FragmentScope
+@Component(dependencies = arrayOf(ActivityComponent::class), modules = arrayOf(FragmentModule::class))
 interface FragmentComponent {
 
-    fun getActivity(): Activity
+    fun getFragment(): Fragment
 
-    fun inject(baseFragment: BaseFragment<BaseFragmentViewModel, ViewDataBinding>)
+    fun inject(homeFragment: HomeFragment)
+
+    fun inject(drawerMenuFragment: DrawerMenuFragment)
+
 
 }

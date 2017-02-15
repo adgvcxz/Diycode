@@ -9,7 +9,7 @@ import com.adgvcxz.diycode.ui.base.BaseActivity
 class LoginActivity : BaseActivity<LoginActivityViewModel, ActivityLoginBinding>() {
 
     override fun initInject() {
-        getActivityComponent().inject(this)
+        activityComponent.inject(this)
     }
 }
 

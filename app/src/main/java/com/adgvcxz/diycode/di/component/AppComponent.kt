@@ -3,6 +3,7 @@ package com.adgvcxz.diycode.di.component
 import com.adgvcxz.diycode.DiyCodeApp
 import com.adgvcxz.diycode.di.module.AppModule
 import com.adgvcxz.diycode.net.ApiService
+import com.adgvcxz.diycode.rxbus.RxBus
 import dagger.Component
 import javax.inject.Singleton
 
@@ -19,4 +20,5 @@ interface AppComponent {
 
     fun apiService(): ApiService
 
+    fun getRxBus(): RxBus
 }

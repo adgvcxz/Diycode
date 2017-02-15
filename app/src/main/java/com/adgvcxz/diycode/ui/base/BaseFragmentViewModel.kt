@@ -1,6 +1,7 @@
 package com.adgvcxz.diycode.ui.base
 
 import android.os.Parcelable
+import javax.inject.Inject
 
 /**
  * zhaowei

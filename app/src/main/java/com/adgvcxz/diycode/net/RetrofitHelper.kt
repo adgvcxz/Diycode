@@ -8,13 +8,14 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/13.
  */
 
-class RetrofitHelper {
+class RetrofitHelper @Inject constructor() {
 
     val apiService: ApiService
 

@@ -1,6 +1,5 @@
 package com.adgvcxz.diycode.di.module
 
-import android.app.Activity
 import android.support.v4.app.Fragment
 import com.adgvcxz.diycode.di.FragmentScope
 import dagger.Module
@@ -15,5 +14,5 @@ class FragmentModule(private val fragment: Fragment) {
 
     @Provides
     @FragmentScope
-    fun provideActivity(): Activity = fragment.activity
+    fun provideFragment(): Fragment = fragment
 }

@@ -6,16 +6,19 @@ import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.rxbus.ClickNavigation
 import com.adgvcxz.diycode.rxbus.RxBus
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
+import javax.inject.Inject
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/12.
  */
 
-class HomeFragmentViewModel: BaseFragmentViewModel() {
+class HomeFragmentViewModel @Inject constructor() : BaseFragmentViewModel() {
 
+    @Inject
+    lateinit var rxBus: RxBus
 
-    fun onClickNavigation(view: View) = RxBus.instance.post(ClickNavigation())
+    fun onClickNavigation(view: View) = rxBus.post(ClickNavigation())
 
 
     override fun contentId(): Int {
