@@ -25,6 +25,6 @@ class AppModule(private val application: DiyCodeApp) {
 
     @Provides
     @Singleton
-    fun provideRxBus(rxBus: RxBus): RxBus = rxBus
+    fun provideRxBus(): RxBus = RxBus()
 
 }

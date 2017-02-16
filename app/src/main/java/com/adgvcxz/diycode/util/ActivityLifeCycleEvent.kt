@@ -6,10 +6,10 @@ package com.adgvcxz.diycode.util
  */
 
 enum class ActivityLifeCycleEvent {
-    CREATE,
-    START,
-    RESUME,
-    PAUSE,
-    STOP,
-    DESTROY
+    Create,
+    Start,
+    Resume,
+    Pause,
+    Stop,
+    Destroy
 }

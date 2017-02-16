@@ -4,7 +4,8 @@ import android.support.v4.app.Fragment
 import com.adgvcxz.diycode.di.FragmentScope
 import com.adgvcxz.diycode.di.module.FragmentModule
 import com.adgvcxz.diycode.ui.base.DrawerMenuFragment
-import com.adgvcxz.diycode.ui.base.HomeFragment
+import com.adgvcxz.diycode.ui.base.TopicFragment
+import com.adgvcxz.diycode.ui.main.home.HomeFragment
 import dagger.Component
 
 /**
@@ -16,6 +17,8 @@ import dagger.Component
 interface FragmentComponent {
 
     fun getFragment(): Fragment
+
+    fun inject(topicFragment: TopicFragment)
 
     fun inject(homeFragment: HomeFragment)
 

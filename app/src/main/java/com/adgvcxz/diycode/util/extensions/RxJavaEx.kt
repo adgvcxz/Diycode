@@ -1,4 +1,4 @@
-package com.adgvcxz.diycode.util
+package com.adgvcxz.diycode.util.extensions
 
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers

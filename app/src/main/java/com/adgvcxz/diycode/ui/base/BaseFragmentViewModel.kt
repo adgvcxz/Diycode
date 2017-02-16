@@ -1,17 +1,20 @@
 package com.adgvcxz.diycode.ui.base
 
-import android.os.Parcelable
-import javax.inject.Inject
+import com.adgvcxz.diycode.util.FragmentLifeCycleEvent
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/11.
  */
 
-abstract class BaseFragmentViewModel: Parcelable {
+abstract class BaseFragmentViewModel: RxViewModel<FragmentLifeCycleEvent>() {
+
     abstract fun contentId(): Int
 
-    open fun restore(model: BaseFragmentViewModel) {
+    open fun onCreateView() = lifeCycleNext(FragmentLifeCycleEvent.CreateView)
 
+    open fun onDestroyView() {
+        dispose()
+        lifeCycleNext(FragmentLifeCycleEvent.DestroyView)
     }
 }

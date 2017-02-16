@@ -1,9 +1,10 @@
 package com.adgvcxz.diycode.ui.main.home
 
-import android.os.Parcel
-import android.view.View
+import android.databinding.ObservableArrayList
+import android.support.v4.app.Fragment
 import com.adgvcxz.diycode.R
-import com.adgvcxz.diycode.rxbus.ClickNavigation
+import com.adgvcxz.diycode.binding.adapter.BaseFragmentPagerAdapter
+import com.adgvcxz.diycode.rxbus.OpenDrawer
 import com.adgvcxz.diycode.rxbus.RxBus
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
 import javax.inject.Inject
@@ -13,24 +14,27 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/2/12.
  */
 
-class HomeFragmentViewModel @Inject constructor() : BaseFragmentViewModel() {
+class HomeFragmentViewModel @Inject constructor(private val fragment: Fragment, private val rxBus: RxBus) : BaseFragmentViewModel() {
 
-    @Inject
-    lateinit var rxBus: RxBus
+    val items = ObservableArrayList<TopicFragmentViewModel>()
+    var adapter: BaseFragmentPagerAdapter<TopicFragmentViewModel> = BaseFragmentPagerAdapter(fm = fragment.childFragmentManager)
+    val titles = arrayOf("abcd", "abcd", "abcd")
 
-    fun onClickNavigation(view: View) = rxBus.post(ClickNavigation())
-
-
-    override fun contentId(): Int {
-        return R.layout.fragment_home
+    init {
+        items.add(TopicFragmentViewModel())
+        items.add(TopicFragmentViewModel())
+        items.add(TopicFragmentViewModel())
     }
 
-    override fun writeToParcel(dest: Parcel?, flags: Int) {
-
+    override fun onCreateView() {
+        super.onCreateView()
+        if (fragment is HomeFragment) {
+            fragment.log()
+        }
     }
 
-    override fun describeContents(): Int {
-        return 0
-    }
+    fun openDrawer() = rxBus.post(OpenDrawer())
+
+    override fun contentId(): Int = R.layout.fragment_home
 
 }

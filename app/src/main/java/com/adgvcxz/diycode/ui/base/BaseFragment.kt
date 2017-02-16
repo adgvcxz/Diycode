@@ -20,8 +20,6 @@ import javax.inject.Inject
 
 abstract class BaseFragment<T : BaseFragmentViewModel, out B : ViewDataBinding> : Fragment() {
 
-    val Data = "Data"
-
     @Inject
     lateinit var viewModel: T
 
@@ -36,18 +34,21 @@ abstract class BaseFragment<T : BaseFragmentViewModel, out B : ViewDataBinding> 
                 .build()
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val model = savedInstanceState?.getParcelable<T>(Data)
-        if (model != null) {
-            viewModel.restore(model)
-        }
-    }
-
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         inject()
         dataBinding.setVariable(BR.model, viewModel)
+        viewModel.onCreateView()
+        initViewAndData(dataBinding.root)
         return dataBinding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.onDestroyView()
+    }
+
+    open fun initViewAndData(view: View) {
+
     }
 
     abstract fun inject()

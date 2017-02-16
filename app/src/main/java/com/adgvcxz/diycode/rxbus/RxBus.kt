@@ -10,7 +10,7 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/2/13.
  */
 
-class RxBus @Inject constructor() {
+class RxBus {
 
     private val bus: Subject<Any> by lazy {
         PublishSubject.create<Any>().toSerialized()

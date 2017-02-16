@@ -1,8 +1,9 @@
-package com.adgvcxz.diycode.util
+package com.adgvcxz.diycode.util.extensions
 
 import android.util.Log
 import android.widget.Toast
 import com.adgvcxz.diycode.DiyCodeApp
+import com.adgvcxz.diycode.util.Error
 import com.jakewharton.retrofit2.adapter.rxjava2.HttpException
 import java.io.IOException
 

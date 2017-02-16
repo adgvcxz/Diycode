@@ -19,8 +19,6 @@ import javax.inject.Inject
 
 abstract class BaseActivity<T : BaseActivityViewModel, out B : ViewDataBinding> : AppCompatActivity() {
 
-    val SaveStateValue = "Data"
-
     @Inject
     lateinit var viewModel: T
 
@@ -41,17 +39,17 @@ abstract class BaseActivity<T : BaseActivityViewModel, out B : ViewDataBinding> 
         super.onCreate(savedInstanceState)
         initInject()
         dataBinding.setVariable(BR.model, viewModel)
-        viewModel.onCreate(this)
+        viewModel.onCreate()
     }
 
     override fun onStop() {
         super.onStop()
-        viewModel.onStop(this)
+        viewModel.onStop()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        viewModel.onDestroy(this)
+        viewModel.onDestroy()
     }
 
     abstract fun initInject()
