@@ -4,7 +4,7 @@ import android.app.Activity
 import android.databinding.ObservableBoolean
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.observable.ObservableString
-import com.adgvcxz.diycode.rxbus.OpenDrawer
+import com.adgvcxz.diycode.rxbus.OpenMainDrawer
 import com.adgvcxz.diycode.rxbus.RxBus
 import com.adgvcxz.diycode.ui.base.BaseActivityViewModel
 import javax.inject.Inject
@@ -22,7 +22,7 @@ class MainActivityViewModel @Inject constructor(private val rxBus: RxBus) : Base
 
     override fun onCreate() {
         super.onCreate()
-        addDisposable(rxBus.toObservable(OpenDrawer::class.java)
+        addDisposable(rxBus.toObservable(OpenMainDrawer::class.java)
                 .map { !drawerOpen.get() }
                 .subscribe {
                     drawerOpen.set(it)

@@ -17,10 +17,7 @@
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/colorAccent"
-            app:adapter="@{model.adapter}"
-            app:items="@{model.items}"
-            app:titles="@{@stringArray/home_tab_titles}" />
+            android:background="@color/colorAccent" />
 
         <android.support.design.widget.AppBarLayout
             android:layout_width="match_parent"

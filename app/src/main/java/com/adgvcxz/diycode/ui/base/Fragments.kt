@@ -10,13 +10,14 @@ import com.adgvcxz.diycode.ui.main.home.TopicFragmentViewModel
  * Created by zhaowei on 2017/2/15.
  */
 
-class TopicFragment: BaseFragment<TopicFragmentViewModel, ViewDataBinding>() {
+
+class TopicFragment : BaseFragment<TopicFragmentViewModel, ViewDataBinding>() {
     override fun inject() {
         fragmentComponent.inject(this)
     }
 }
 
-class DrawerMenuFragment: BaseFragment<DrawerMenuFragmentViewModel, FragmentDrawerMenuBinding>() {
+class DrawerMenuFragment : BaseFragment<DrawerMenuFragmentViewModel, FragmentDrawerMenuBinding>() {
     override fun inject() {
         fragmentComponent.inject(this)
     }

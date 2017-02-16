@@ -1,6 +1,7 @@
 package com.adgvcxz.diycode.di.module
 
 import android.support.v4.app.Fragment
+import android.support.v4.app.FragmentManager
 import com.adgvcxz.diycode.di.FragmentScope
 import dagger.Module
 import dagger.Provides
@@ -15,4 +16,8 @@ class FragmentModule(private val fragment: Fragment) {
     @Provides
     @FragmentScope
     fun provideFragment(): Fragment = fragment
+
+    @Provides
+    @FragmentScope
+    fun provideChildFragmentManager(): FragmentManager = fragment.childFragmentManager
 }

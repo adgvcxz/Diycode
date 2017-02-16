@@ -5,4 +5,4 @@ package com.adgvcxz.diycode.rxbus
  * Created by zhaowei on 2017/2/13.
  */
 
-class OpenDrawer
+class OpenMainDrawer
