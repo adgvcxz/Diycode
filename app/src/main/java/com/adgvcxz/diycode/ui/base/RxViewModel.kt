@@ -1,5 +1,6 @@
 package com.adgvcxz.diycode.ui.base
 
+import com.adgvcxz.diycode.util.extensions.httpScheduler
 import com.adgvcxz.diycode.util.extensions.takeFirst
 import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.CompositeDisposable
@@ -11,10 +12,10 @@ import io.reactivex.subjects.PublishSubject
  * Created by zhaowei on 2017/2/16.
  */
 
-open class RxViewModel<in T> {
+abstract class RxViewModel<T>: BaseViewModel() {
 
     private var disposables: CompositeDisposable? = null
-    private val lifecycleSubject: PublishSubject<T> by lazy { PublishSubject.create<T>() }
+    val lifecycleSubject: PublishSubject<T> by lazy { PublishSubject.create<T>() }
 
     fun addDisposable(disposable: Disposable){
         if (disposables == null) {

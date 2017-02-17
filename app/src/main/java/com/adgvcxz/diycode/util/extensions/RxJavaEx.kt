@@ -17,4 +17,3 @@ fun <T> Observable<T>.takeFirst(predicate: Predicate<in T>) = filter(predicate).
 fun <T> Observable<T>.httpScheduler(): Observable<T> = compose {
     it.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
 }
-

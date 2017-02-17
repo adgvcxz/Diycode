@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="model"
+            type="com.adgvcxz.diycode.ui.main.home.topic.TopicViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingBottom="12dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:gravity="center_vertical"
+            android:paddingTop="12dp">
+
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:actualImageScaleType="focusCrop"
+                app:roundedCornerRadius="2dp"
+                app:imageUrl="@{model.avatar}"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FF0000"
+                android:text="@{model.username}"
+                />
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

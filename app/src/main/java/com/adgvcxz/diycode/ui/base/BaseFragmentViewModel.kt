@@ -1,6 +1,11 @@
 package com.adgvcxz.diycode.ui.base
 
 import com.adgvcxz.diycode.util.FragmentLifeCycleEvent
+import com.adgvcxz.diycode.util.extensions.httpScheduler
+import com.adgvcxz.diycode.util.extensions.takeFirst
+import io.reactivex.ObservableTransformer
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
  * zhaowei
@@ -9,12 +14,18 @@ import com.adgvcxz.diycode.util.FragmentLifeCycleEvent
 
 abstract class BaseFragmentViewModel: RxViewModel<FragmentLifeCycleEvent>() {
 
-    abstract fun contentId(): Int
-
     open fun onCreateView() = lifeCycleNext(FragmentLifeCycleEvent.CreateView)
 
     open fun onDestroyView() {
         dispose()
         lifeCycleNext(FragmentLifeCycleEvent.DestroyView)
+    }
+
+    fun <T> httpScheduler(): ObservableTransformer<T, T> {
+        return ObservableTransformer {
+            it.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .takeUntil(lifecycleSubject.takeFirst(FragmentLifeCycleEvent.DestroyView))
+        }
     }
 }

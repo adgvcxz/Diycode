@@ -3,7 +3,7 @@ package com.adgvcxz.diycode.ui.base
 import android.databinding.ViewDataBinding
 import com.adgvcxz.diycode.databinding.FragmentDrawerMenuBinding
 import com.adgvcxz.diycode.ui.main.drawer.DrawerMenuFragmentViewModel
-import com.adgvcxz.diycode.ui.main.home.TopicFragmentViewModel
+import com.adgvcxz.diycode.ui.main.home.topic.TopicFragmentViewModel
 
 /**
  * zhaowei

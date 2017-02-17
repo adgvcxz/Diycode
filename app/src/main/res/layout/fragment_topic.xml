@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.ui.main.home.TopicFragmentViewModel" />
+            type="com.adgvcxz.diycode.ui.main.home.topic.TopicFragmentViewModel" />
     </data>
 
     <LinearLayout
@@ -15,5 +16,10 @@
         android:background="@color/firstTextColor"
         android:orientation="vertical">
 
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:listDivider="@drawable/topic_divider_line"
+            app:items="@{model.items}" />
     </LinearLayout>
 </layout>
