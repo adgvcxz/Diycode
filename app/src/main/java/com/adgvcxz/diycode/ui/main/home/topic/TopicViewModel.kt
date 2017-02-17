@@ -11,10 +11,8 @@ import com.adgvcxz.diycode.ui.base.BaseViewModel
 
 class TopicViewModel(val topic: Topic): BaseViewModel() {
 
-    val username = topic.user!!.name
-    val avatar = topic.user!!.avatarUrl
-
-
-
     override fun contentId(): Int = R.layout.item_topic
+
+    fun click() {
+    }
 }

@@ -1,7 +1,7 @@
 package com.adgvcxz.diycode.bean
 
+import android.databinding.BaseObservable
 import com.google.gson.annotations.SerializedName
-
 
 
 /**
@@ -9,27 +9,42 @@ import com.google.gson.annotations.SerializedName
  * Created by zhaowei on 2017/2/17.
  */
 
-class Topic {
-    var id: Int = 0
-    var title: String = ""
-    var createdAt: String = ""
-    var updatedAt: String = ""
-    var repliedAt: String = ""
-    var repliesCount: Int = 0
-    var nodeName: String = ""
-    var nodeId: Int = 0
-    var lastReplyUserId: Int = 0
-    var lastReplyUserLogin = ""
-    var user: User? = null
-    var isDeleted: Boolean = false
-    var isExcellent: Boolean = false
-    var abilities: Abilities? = null
+class Topic : BaseObservable() {
 
-    class User {
+    var id: Int = 0
+
+    lateinit var title: String
+
+    lateinit var createdAt: String
+
+    lateinit var updatedAt: String
+
+    lateinit var repliedAt: String
+
+    var repliesCount: Int = 0
+
+    lateinit var nodeName: String
+
+    var nodeId: Int = 0
+
+    var lastReplyUserId: Int? = null
+
+    var lastReplyUserLogin: String? = null
+
+    lateinit var user: User
+
+    var isDeleted: Boolean = false
+
+    var isExcellent: Boolean = false
+
+    lateinit var abilities: Abilities
+
+
+    class User : BaseObservable() {
         var id: Int = 0
         var login: String = ""
         var name: String = ""
-        var avatarUrl: String = ""
+        @SerializedName("avatar_url") var avatar: String = ""
     }
 
     class Abilities {

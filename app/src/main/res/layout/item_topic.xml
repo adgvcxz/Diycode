@@ -12,31 +12,33 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:onClick="@{() -> model.click()}"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingBottom="12dp"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
-            android:gravity="center_vertical"
             android:paddingTop="12dp">
 
             <com.facebook.drawee.view.SimpleDraweeView
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="25dp"
+                android:layout_height="24dp"
                 app:actualImageScaleType="focusCrop"
-                app:roundedCornerRadius="2dp"
-                app:imageUrl="@{model.avatar}"/>
+                app:imageUrl="@{model.topic.user.avatar}"
+                app:roundedCornerRadius="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FF0000"
-                android:text="@{model.username}"
-                />
+                android:layout_marginLeft="4dp"
+                android:text="@{model.topic.user.name}"
+                android:textColor="@color/firstTextColor"
+                android:textSize="15sp" />
         </LinearLayout>
 
     </LinearLayout>
