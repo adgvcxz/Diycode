@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<inset
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:insetLeft="16dp"
-    android:insetRight="16dp">
+<inset xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <shape
-        android:shape="rectangle">
-        <size android:height="1dp"/>
-        <solid android:color="@color/colorPrimaryDark"/>
+    <shape android:shape="rectangle">
+        <size android:height="4dp" />
+        <solid android:color="#CCCCCC" />
     </shape>
 
 </inset>

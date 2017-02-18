@@ -7,7 +7,7 @@ import android.os.Looper
  * Created by zhaowei on 2017/2/16.
  */
 
-fun Any.ensureChangeOnMainThread() {
+fun ensureChangeOnMainThread() {
     if (Thread.currentThread() != Looper.getMainLooper().thread) {
         throw IllegalStateException("You must only modify the ObservableList on the main thread.")
     }

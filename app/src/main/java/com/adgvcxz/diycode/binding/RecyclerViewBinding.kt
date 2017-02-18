@@ -1,9 +1,11 @@
 package com.adgvcxz.diycode.binding
 
 import android.databinding.BindingAdapter
+import android.support.v4.content.ContextCompat
 import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.binding.adapter.BaseRecyclerViewAdapter
 import com.adgvcxz.diycode.ui.base.BaseViewModel
 
@@ -14,9 +16,9 @@ import com.adgvcxz.diycode.ui.base.BaseViewModel
 @BindingAdapter("items")
 fun <T : BaseViewModel> RecyclerView.loadData(items: List<T>) {
     layoutManager = LinearLayoutManager(context)
-    val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
+//    val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
 //    decoration.setDrawable(ContextCompat.getDrawable(context, R.drawable.topic_divider_line))
-    addItemDecoration(decoration)
+//    addItemDecoration(decoration)
     if (adapter == null) {
         adapter = BaseRecyclerViewAdapter<T>()
     }
