@@ -1,5 +1,6 @@
 package com.adgvcxz.diycode.net
 
+import com.adgvcxz.diycode.bean.News
 import com.adgvcxz.diycode.bean.Token
 import com.adgvcxz.diycode.bean.Topic
 import io.reactivex.Observable
@@ -21,6 +22,10 @@ interface ApiService {
 
     @GET("topics.json")
     fun getTopics(@Query("offset") offset: Int = 0, @Query("limit") limit: Int = 20): Observable<List<Topic>>
+
+    @GET("news.json")
+    fun getNews(@Query("node_id") nodeId: Int?,
+                 @Query("offset") offset: Int = 0, @Query("limit") limit: Int = 20): Observable<List<News>>
 
 }
 

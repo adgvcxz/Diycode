@@ -12,44 +12,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="@{() -> model.click()}"
-        android:background="#FFFFFF"
-        android:orientation="horizontal">
-
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            app:actualImageScaleType="focusCrop"
-            android:layout_margin="8dp"
-            app:imageUrl="@{model.topic.user.avatar}"
-            app:roundedCornerRadius="2dp" />
+        android:orientation="vertical">
 
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:paddingBottom="12dp"
-            android:paddingRight="20dp"
-            android:paddingTop="12dp">
+            android:background="#FFFFFF"
+            android:onClick="@{() -> model.click()}"
+            android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
-                android:text="@{model.topic.title}"
-                android:textColor="@color/firstTextColor"
-                android:textSize="18sp" />
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_margin="8dp"
+                app:actualImageScaleType="focusCrop"
+                app:imageUrl="@{model.topic.user.avatar}"
+                app:roundedCornerRadius="2dp" />
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:textColor="@color/firstTextColor"
-                android:textSize="15sp"
-                android:text="@{model.topic.user.login}"
-                />
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:paddingBottom="12dp"
+                android:paddingRight="20dp"
+                android:paddingTop="12dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="4dp"
+                    android:text="@{model.topic.title}"
+                    android:textColor="@color/firstTextColor"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{model.topic.user.login}"
+                    android:textColor="@color/firstTextColor"
+                    android:textSize="13sp" />
+            </LinearLayout>
+
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:background="@color/divideColor" />
     </LinearLayout>
 </layout>

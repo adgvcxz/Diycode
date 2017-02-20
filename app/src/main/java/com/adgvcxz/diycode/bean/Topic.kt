@@ -1,7 +1,6 @@
 package com.adgvcxz.diycode.bean
 
 import android.databinding.BaseObservable
-import com.google.gson.annotations.SerializedName
 
 
 /**
@@ -31,7 +30,7 @@ class Topic : BaseObservable() {
 
     var lastReplyUserLogin: String? = null
 
-    lateinit var user: User
+    lateinit var user: SimpleUser
 
     var isDeleted: Boolean = false
 
@@ -39,13 +38,6 @@ class Topic : BaseObservable() {
 
     lateinit var abilities: Abilities
 
-
-    class User : BaseObservable() {
-        var id: Int = 0
-        var login: String = ""
-        var name: String = ""
-        @SerializedName("avatar_url") var avatar: String = ""
-    }
 
     class Abilities {
         var isUpdate: Boolean = false

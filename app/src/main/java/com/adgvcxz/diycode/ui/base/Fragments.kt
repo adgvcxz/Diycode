@@ -3,6 +3,7 @@ package com.adgvcxz.diycode.ui.base
 import android.databinding.ViewDataBinding
 import com.adgvcxz.diycode.databinding.FragmentDrawerMenuBinding
 import com.adgvcxz.diycode.ui.main.drawer.DrawerMenuFragmentViewModel
+import com.adgvcxz.diycode.ui.main.home.news.NewsFragmentViewModel
 import com.adgvcxz.diycode.ui.main.home.topic.TopicFragmentViewModel
 
 /**
@@ -17,8 +18,17 @@ class TopicFragment : BaseFragment<TopicFragmentViewModel, ViewDataBinding>() {
     }
 }
 
+class NewsFragment: BaseFragment<NewsFragmentViewModel, ViewDataBinding>() {
+    override fun inject() {
+        fragmentComponent.inject(this)
+    }
+
+}
+
 class DrawerMenuFragment : BaseFragment<DrawerMenuFragmentViewModel, FragmentDrawerMenuBinding>() {
     override fun inject() {
         fragmentComponent.inject(this)
     }
 }
+
+

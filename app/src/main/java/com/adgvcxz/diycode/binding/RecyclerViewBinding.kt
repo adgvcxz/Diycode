@@ -1,26 +1,23 @@
 package com.adgvcxz.diycode.binding
 
 import android.databinding.BindingAdapter
-import android.support.v4.content.ContextCompat
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.binding.adapter.BaseRecyclerViewAdapter
 import com.adgvcxz.diycode.ui.base.BaseViewModel
+import java.util.*
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/17.
  */
 @BindingAdapter("items")
-fun <T : BaseViewModel> RecyclerView.loadData(items: List<T>) {
-    layoutManager = LinearLayoutManager(context)
-//    val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
-//    decoration.setDrawable(ContextCompat.getDrawable(context, R.drawable.topic_divider_line))
-//    addItemDecoration(decoration)
-    if (adapter == null) {
-        adapter = BaseRecyclerViewAdapter<T>()
+fun <T : BaseViewModel> RecyclerView.loadData(items: ArrayList<T>?) {
+    if (items != null) {
+        layoutManager = LinearLayoutManager(context)
+        if (adapter == null) {
+            adapter = BaseRecyclerViewAdapter<T>()
+        }
+        (adapter as BaseRecyclerViewAdapter<T>).setList(items)
     }
-    (adapter as BaseRecyclerViewAdapter<T>).setList(items)
 }

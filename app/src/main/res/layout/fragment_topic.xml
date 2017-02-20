@@ -5,19 +5,19 @@
 
     <data>
 
+
         <variable
             name="model"
             type="com.adgvcxz.diycode.ui.main.home.topic.TopicFragmentViewModel" />
     </data>
 
-    <LinearLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <android.support.v7.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:items="@{model.items}" />
-    </LinearLayout>
+        <include
+            layout="@layout/include_recycler_view"
+            app:model="@{model.listViewModel}" />
+
+    </FrameLayout>
 </layout>

@@ -5,4 +5,5 @@
     <color name="mainBackground">#FFFFFF</color>
     <color name="colorAccent">#FF4081</color>
     <color name="firstTextColor">#333333</color>
+    <color name="divideColor">#999999</color>
 </resources>
