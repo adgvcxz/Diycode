@@ -1,10 +1,11 @@
 package com.adgvcxz.diycode.ui.main.home.news
 
+import android.databinding.ObservableBoolean
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.bean.News
 import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
-import com.adgvcxz.diycode.ui.base.RecyclerViewModel
+import com.adgvcxz.diycode.ui.base.view.RecyclerViewModel
 import io.reactivex.Observable
 import java.util.*
 import javax.inject.Inject
@@ -26,6 +27,10 @@ class NewsFragmentViewModel @Inject constructor(private val apiService: ApiServi
     }
 
     inner class NewsListViewModel : RecyclerViewModel<NewsViewModel>() {
+
+        override var loadMore = ObservableBoolean(true)
+        override var loadAll = ObservableBoolean(false)
+
         override fun request(offset: Int): Observable<ArrayList<NewsViewModel>> {
             return apiService.getNews(null)
                     .compose(httpScheduler<List<News>>())
@@ -34,6 +39,5 @@ class NewsFragmentViewModel @Inject constructor(private val apiService: ApiServi
                     .toObservable()
 
         }
-
     }
 }

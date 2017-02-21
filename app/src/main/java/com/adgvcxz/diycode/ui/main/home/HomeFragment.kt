@@ -7,10 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter
 import android.view.View
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.databinding.FragmentHomeBinding
-import com.adgvcxz.diycode.ui.base.BaseFragment
-import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
-import com.adgvcxz.diycode.ui.base.DrawerMenuFragment
-import com.adgvcxz.diycode.ui.base.TopicFragment
+import com.adgvcxz.diycode.ui.base.*
 
 /**
  * zhaowei
@@ -19,7 +16,7 @@ import com.adgvcxz.diycode.ui.base.TopicFragment
 
 class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>() {
 
-    val fragments = arrayOf(TopicFragment(), DrawerMenuFragment(), TopicFragment())
+    val fragments = arrayOf(TopicFragment(), NewsFragment(), TopicFragment())
 
     override fun inject() {
         fragmentComponent.inject(this)

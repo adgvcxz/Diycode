@@ -1,5 +1,6 @@
-package com.adgvcxz.diycode.ui.base
+package com.adgvcxz.diycode.ui.base.view
 
+import com.adgvcxz.diycode.ui.base.view.BaseViewModel
 import com.adgvcxz.diycode.util.extensions.httpScheduler
 import com.adgvcxz.diycode.util.extensions.takeFirst
 import io.reactivex.ObservableTransformer

@@ -7,10 +7,10 @@ package com.adgvcxz.diycode.bean
  */
 
 class Token {
-    private val accessToken: String = ""
-    private val tokenType: String = ""
-    private val expiresIn: Int = 0
-    private val refreshToken: String = ""
-    private val createdAt: Int = 0
+    val accessToken: String = ""
+    val tokenType: String = ""
+    val expiresIn: Int = 0
+    val refreshToken: String = ""
+    val createdAt: Int = 0
 
 }

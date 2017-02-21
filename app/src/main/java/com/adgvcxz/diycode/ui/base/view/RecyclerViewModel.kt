@@ -1,7 +1,7 @@
-package com.adgvcxz.diycode.ui.base
+package com.adgvcxz.diycode.ui.base.view
 
 import android.databinding.ObservableArrayList
-import com.adgvcxz.diycode.observable.ObservableString
+import android.databinding.ObservableBoolean
 import com.adgvcxz.diycode.util.extensions.onAction
 import io.reactivex.Observable
 import java.util.*
@@ -11,11 +11,12 @@ import java.util.*
  * Created by zhaowei on 2017/2/19.
  */
 
-abstract class RecyclerViewModel<T: BaseViewModel> {
+abstract class RecyclerViewModel<T : BaseViewModel> {
 
     val items = ObservableArrayList<T>()
+    open var loadMore = ObservableBoolean(false)
+    open var loadAll = ObservableBoolean(true)
     val offset = 0
-    val str = ObservableString("abcd")
 
     fun loadData() {
         request(offset)

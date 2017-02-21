@@ -2,7 +2,7 @@ package com.adgvcxz.diycode.ui.main.home.news
 
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.bean.News
-import com.adgvcxz.diycode.ui.base.BaseViewModel
+import com.adgvcxz.diycode.ui.base.view.BaseViewModel
 
 /**
  * zhaowei
@@ -10,6 +10,9 @@ import com.adgvcxz.diycode.ui.base.BaseViewModel
  */
 
 class NewsViewModel(val news: News): BaseViewModel() {
-    override fun contentId(): Int = R.layout.item_topic
+
+    override fun contentId(): Int = R.layout.item_news
+
+
 
 }

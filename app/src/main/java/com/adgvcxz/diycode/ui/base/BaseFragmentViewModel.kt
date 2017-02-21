@@ -1,5 +1,6 @@
 package com.adgvcxz.diycode.ui.base
 
+import com.adgvcxz.diycode.ui.base.view.RxViewModel
 import com.adgvcxz.diycode.util.FragmentLifeCycleEvent
 import com.adgvcxz.diycode.util.extensions.httpScheduler
 import com.adgvcxz.diycode.util.extensions.takeFirst

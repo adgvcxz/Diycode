@@ -1,11 +1,10 @@
 package com.adgvcxz.diycode.ui.main.home.topic
 
-import android.databinding.ObservableField
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.bean.Topic
 import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
-import com.adgvcxz.diycode.ui.base.RecyclerViewModel
+import com.adgvcxz.diycode.ui.base.view.RecyclerViewModel
 import io.reactivex.Observable
 import java.util.*
 import javax.inject.Inject
@@ -17,18 +16,7 @@ import javax.inject.Inject
 
 class TopicFragmentViewModel @Inject constructor(private val apiService: ApiService) : BaseFragmentViewModel() {
 
-    val listViewModel = object: RecyclerViewModel<TopicViewModel>() {
-        override fun request(offset: Int): Observable<ArrayList<TopicViewModel>> {
-            return apiService.getTopics()
-                    .compose(httpScheduler<List<Topic>>())
-                    .flatMapIterable { it }
-                    .collect({ ArrayList<TopicViewModel>()}, { list, bean -> list.add(TopicViewModel(bean)) })
-                    .toObservable()
-        }
-
-    }
-
-    val str = ObservableField<String>("abcd")
+    val listViewModel = TopicsViewModel()
 
     override fun contentId(): Int = R.layout.fragment_topic
 
@@ -37,13 +25,13 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
         listViewModel.loadData()
     }
 
-//    inner class TopicsViewModel: RecyclerViewModel<TopicViewModel>() {
-//        override fun request(offset: Int): Observable<ArrayList<TopicViewModel>> {
-//            return apiService.getTopics()
-//                    .compose(httpScheduler<List<Topic>>())
-//                    .flatMapIterable { it }
-//                    .collect({ ArrayList<TopicViewModel>()}, { list, bean -> list.add(TopicViewModel(bean)) })
-//                    .toObservable()
-//        }
-//    }
+    inner class TopicsViewModel : RecyclerViewModel<TopicViewModel>() {
+        override fun request(offset: Int): Observable<ArrayList<TopicViewModel>> {
+            return apiService.getTopics()
+                    .compose(httpScheduler<List<Topic>>())
+                    .flatMapIterable { it }
+                    .collect({ ArrayList<TopicViewModel>() }, { list, bean -> list.add(TopicViewModel(bean)) })
+                    .toObservable()
+        }
+    }
 }
