@@ -14,6 +14,10 @@ import retrofit2.http.*
 
 interface ApiService {
 
+    companion object {
+        val Limit = 10
+    }
+
     @POST("https://www.diycode.cc/oauth/token")
     @FormUrlEncoded
     fun getToken(@Field("client_id") clientId: String, @Field("client_secret") clientSecret: String,
@@ -21,11 +25,11 @@ interface ApiService {
                  @Field("password") password: String): Observable<Token>
 
     @GET("topics.json")
-    fun getTopics(@Query("offset") offset: Int = 0, @Query("limit") limit: Int = 20): Observable<List<Topic>>
+    fun getTopics(@Query("offset") offset: Int = 0, @Query("limit") limit: Int = Limit): Observable<List<Topic>>
 
     @GET("news.json")
     fun getNews(@Query("node_id") nodeId: Int?,
-                 @Query("offset") offset: Int = 0, @Query("limit") limit: Int = 20): Observable<List<News>>
+                 @Query("offset") offset: Int = 0, @Query("limit") limit: Int = Limit): Observable<List<News>>
 
 }
 

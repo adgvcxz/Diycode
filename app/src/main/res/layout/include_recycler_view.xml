@@ -6,14 +6,17 @@
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.ui.base.view.RecyclerViewModel" />
+            type="com.adgvcxz.diycode.binding.recycler.RecyclerViewModel" />
     </data>
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:firstTopMargin="@{model.topMargin}"
+        app:items="@{model.items}"
         app:loadAll="@{model.loadAll}"
         app:loadMore="@{model.loadMore}"
-        app:items="@{model.items}"/>
+        app:loadMoreListener="@{model.loadMoreListener}"
+        app:loadingStatus="@{model.loadingStatus}" />
 
 </layout>

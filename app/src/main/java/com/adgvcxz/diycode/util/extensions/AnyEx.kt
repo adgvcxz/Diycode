@@ -1,6 +1,8 @@
 package com.adgvcxz.diycode.util.extensions
 
+import android.content.Context
 import android.os.Looper
+import com.adgvcxz.diycode.DiyCodeApp
 
 /**
  * zhaowei
@@ -12,3 +14,5 @@ fun ensureChangeOnMainThread() {
         throw IllegalStateException("You must only modify the ObservableList on the main thread.")
     }
 }
+
+fun getContext(): Context = DiyCodeApp.appComponent.getContext()

@@ -21,7 +21,7 @@ class DiyCodeApp : Application() {
 
     companion object {
 
-        lateinit var instance: DiyCodeApp
+        private lateinit var instance: DiyCodeApp
 
         val appComponent: AppComponent by lazy {
             DaggerAppComponent.builder().appModule(AppModule(instance)).build()

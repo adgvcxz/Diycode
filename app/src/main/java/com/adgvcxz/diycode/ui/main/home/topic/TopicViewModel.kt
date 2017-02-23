@@ -2,7 +2,7 @@ package com.adgvcxz.diycode.ui.main.home.topic
 
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.bean.Topic
-import com.adgvcxz.diycode.ui.base.view.BaseViewModel
+import com.adgvcxz.diycode.binding.base.BaseViewModel
 
 /**
  * zhaowei

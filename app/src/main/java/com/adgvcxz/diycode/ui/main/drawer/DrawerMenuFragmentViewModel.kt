@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.view.View
 import com.adgvcxz.diycode.R
-import com.adgvcxz.diycode.util.observable.ObservableString
+import com.adgvcxz.diycode.binding.observable.ObservableString
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
 import com.adgvcxz.diycode.ui.login.LoginActivity
 import javax.inject.Inject

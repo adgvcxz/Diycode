@@ -1,4 +1,4 @@
-package com.adgvcxz.diycode.ui.base.view
+package com.adgvcxz.diycode.binding.base
 
 /**
  * zhaowei

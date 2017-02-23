@@ -2,7 +2,7 @@ package com.adgvcxz.diycode.ui.main.home.news
 
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.bean.News
-import com.adgvcxz.diycode.ui.base.view.BaseViewModel
+import com.adgvcxz.diycode.binding.base.BaseViewModel
 
 /**
  * zhaowei

@@ -1,7 +1,5 @@
-package com.adgvcxz.diycode.ui.base.view
+package com.adgvcxz.diycode.binding.base
 
-import com.adgvcxz.diycode.ui.base.view.BaseViewModel
-import com.adgvcxz.diycode.util.extensions.httpScheduler
 import com.adgvcxz.diycode.util.extensions.takeFirst
 import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.CompositeDisposable

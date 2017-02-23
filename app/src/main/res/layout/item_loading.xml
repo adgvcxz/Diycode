@@ -5,29 +5,32 @@
 
         <import type="android.view.View" />
 
+        <import type="com.adgvcxz.diycode.binding.base.LoadingViewModel" />
+
         <variable
             name="model"
-            type="com.adgvcxz.diycode.ui.base.view.LoadingViewModel" />
+            type="LoadingViewModel" />
 
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="48dp">
 
         <ProgressBar
             style="?android:attr/progressBarStyleSmall"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_centerInParent="true"
-            android:visibility="@{model.loading ? View.VISIBLE : View.GONE}" />
+            android:visibility="@{model.status != LoadingViewModel.LoadFailed ? View.VISIBLE : View.GONE}" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            android:text="aaa"
-            android:visibility="@{model.loading ? View.GONE : View.VISIBLE}" />
+            android:gravity="center"
+            android:text="加载失败 点击重试"
+            android:visibility="@{model.status == LoadingViewModel.LoadFailed ? View.VISIBLE : View.GONE}" />
 
     </RelativeLayout>
 </layout>

@@ -1,4 +1,4 @@
-package com.adgvcxz.diycode.util.observable
+package com.adgvcxz.diycode.binding.observable
 
 import android.databinding.ObservableField
 import android.os.Parcel

@@ -1,6 +1,6 @@
 package com.adgvcxz.diycode.ui.base
 
-import com.adgvcxz.diycode.ui.base.view.RxViewModel
+import com.adgvcxz.diycode.binding.base.RxViewModel
 import com.adgvcxz.diycode.util.ActivityLifeCycleEvent
 
 /**
