@@ -3,9 +3,10 @@ package com.adgvcxz.diycode.binding
 import android.databinding.BindingAdapter
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.adgvcxz.diycode.binding.base.BaseViewModel
+import com.adgvcxz.diycode.binding.base.LoadingViewModel
 import com.adgvcxz.diycode.binding.recycler.BaseRecyclerViewAdapter
 import com.adgvcxz.diycode.binding.recycler.OnLoadMoreListener
-import com.adgvcxz.diycode.binding.base.BaseViewModel
 import io.reactivex.Observable
 import java.util.*
 
@@ -56,7 +57,10 @@ fun <T : BaseViewModel> RecyclerView.setLoadMoreListener(listener: OnLoadMoreLis
 fun <T : BaseViewModel> RecyclerView.setLoadSuccess(status: Int) {
     ensureAdapterNotNull<T>()
     Observable.just(adapter).ofType(BaseRecyclerViewAdapter::class.java)
-            .filter { it.loadingModel.status.get() != status }
+            .filter {
+                it.isNotEmpty() && it.loadingModel.status.get() != status
+                        && it.loadingModel.status.get() == LoadingViewModel.Loading
+            }
             .subscribe { it.loadingModel.status.set(status) }
 }
 

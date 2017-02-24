@@ -6,7 +6,6 @@ import android.databinding.ViewDataBinding
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.support.v7.widget.RecyclerView.ViewHolder
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.adgvcxz.diycode.BR
@@ -15,6 +14,7 @@ import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.base.EmptyViewModel
 import com.adgvcxz.diycode.binding.base.LoadingViewModel
 import com.adgvcxz.diycode.util.extensions.ensureChangeOnMainThread
+import com.adgvcxz.diycode.util.extensions.rx
 import java.lang.ref.WeakReference
 
 /**
@@ -30,21 +30,29 @@ class BaseRecyclerViewAdapter<in T : BaseViewModel> : RecyclerView.Adapter<ViewH
     private val firstModel: EmptyViewModel by lazy { EmptyViewModel() }
     var loadMoreListener: OnLoadMoreListener? = null
 
-    val loadingModel: LoadingViewModel by lazy { LoadingViewModel() }
+    val loadingModel: LoadingViewModel by lazy {
+        object : LoadingViewModel() {
+            init {
+                this.status.rx().filter { it == Loading }
+                        .subscribe {
+                            loadMoreListener?.loadMore()
+                        }
+            }
+        }
+    }
+
     var loadMore = false
         set(value) {
             field = value
             if (value && scrollListener == null) {
                 scrollListener = object : RecyclerView.OnScrollListener() {
                     override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
-                        if (loadMore && !loadAll && items != null && items!!.isNotEmpty()
-                                && loadingModel.status.get() == LoadingViewModel.Nothing) {
+                        if (loadMore && !loadAll && isNotEmpty() && loadingModel.status.get() == LoadingViewModel.Nothing) {
                             val manager = recyclerView?.layoutManager as LinearLayoutManager
                             val lastPosition = manager.findLastVisibleItemPosition()
                             val count = manager.itemCount
                             if (count == lastPosition + 1) {
                                 loadingModel.status.set(LoadingViewModel.Loading)
-                                loadMoreListener?.loadMore()
                             }
                         }
                     }
@@ -55,7 +63,7 @@ class BaseRecyclerViewAdapter<in T : BaseViewModel> : RecyclerView.Adapter<ViewH
     var loadAll = true
         set(value) {
             field = value
-            if (value && loadMore && items != null && itemCount > items!!.size) {
+            if (value && loadMore && isNotEmpty() && itemCount > items!!.size) {
                 notifyItemRemoved(itemCount - 1)
             }
         }
@@ -70,10 +78,12 @@ class BaseRecyclerViewAdapter<in T : BaseViewModel> : RecyclerView.Adapter<ViewH
             inflater = LayoutInflater.from(parent!!.context)
         }
         val binding = DataBindingUtil.inflate<ViewDataBinding>(inflater, viewType, parent, false)
-        if (viewType == R.layout.item_empty_view) {
-            val lp = binding.root.layoutParams
-            lp.height = firstTopMargin
-            binding.root.layoutParams = lp
+        when (viewType) {
+            R.layout.item_empty_view -> {
+                val lp = binding.root.layoutParams
+                lp.height = firstTopMargin
+                binding.root.layoutParams = lp
+            }
         }
         return object : ViewHolder(binding.root) {}
     }
@@ -149,6 +159,8 @@ class BaseRecyclerViewAdapter<in T : BaseViewModel> : RecyclerView.Adapter<ViewH
         this.items = items
         notifyDataSetChanged()
     }
+
+    fun isNotEmpty(): Boolean = items != null && items!!.isNotEmpty()
 
     class WeakReferenceOnListChangedCallback<T : BaseViewModel>(adapter: BaseRecyclerViewAdapter<T>) : ObservableList.OnListChangedCallback<ObservableList<T>>() {
 

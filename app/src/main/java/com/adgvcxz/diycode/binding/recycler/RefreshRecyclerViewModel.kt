@@ -2,14 +2,14 @@ package com.adgvcxz.diycode.binding.recycler
 
 import android.databinding.ObservableBoolean
 import com.adgvcxz.diycode.binding.base.BaseViewModel
+import com.adgvcxz.diycode.binding.base.LoadingViewModel
 import com.adgvcxz.diycode.util.extensions.rx
-import com.adgvcxz.diycode.util.extensions.rxChanged
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/23.
  */
-abstract class RefreshRecyclerViewModel<T: BaseViewModel>: RecyclerViewModel<T>() {
+abstract class RefreshRecyclerViewModel<T : BaseViewModel> : RecyclerViewModel<T>() {
 
     var refresh = ObservableBoolean(false)
 
@@ -18,6 +18,7 @@ abstract class RefreshRecyclerViewModel<T: BaseViewModel>: RecyclerViewModel<T>(
             offset = 0
             loadData()
         }
-        items.rxChanged().filter { it }.subscribe { refresh.set(!it) }
+        loadingStatus.rx().filter { offset == 0 && it != LoadingViewModel.Loading }
+                .subscribe { refresh.set(false) }
     }
 }

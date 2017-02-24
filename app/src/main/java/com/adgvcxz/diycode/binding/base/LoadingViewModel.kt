@@ -9,7 +9,7 @@ import com.adgvcxz.diycode.binding.base.BaseViewModel
  * Created by zhaowei on 2017/2/21.
  */
 
-class LoadingViewModel: BaseViewModel() {
+open class LoadingViewModel: BaseViewModel() {
 
     companion object {
 
@@ -24,5 +24,9 @@ class LoadingViewModel: BaseViewModel() {
     val status = ObservableInt(Nothing)
 
     override fun contentId(): Int = R.layout.item_loading
+
+    fun loadMore() {
+        status.set(Loading)
+    }
 
 }

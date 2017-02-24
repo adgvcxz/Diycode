@@ -16,7 +16,7 @@
         app:items="@{model.items}"
         app:loadAll="@{model.loadAll}"
         app:loadMore="@{model.loadMore}"
-        app:loadMoreListener="@{model.loadMoreListener}"
+        app:loadMoreListener="@{() -> model.loadData()}"
         app:loadingStatus="@{model.loadingStatus}" />
 
 </layout>
