@@ -16,8 +16,7 @@
         android:layout_height="match_parent">
 
         <include
-            layout="@layout/include_recycler_view"
+            layout="@layout/include_refresh_recycler_view"
             app:model="@{model.listViewModel}" />
-
     </FrameLayout>
 </layout>
