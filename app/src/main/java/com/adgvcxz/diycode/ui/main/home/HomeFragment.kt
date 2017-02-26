@@ -16,7 +16,7 @@ import com.adgvcxz.diycode.ui.base.*
 
 class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>() {
 
-    val fragments = arrayOf(TopicFragment(), NewsFragment(), TopicFragment())
+    val fragments = arrayOf(TopicFragment(), NewsFragment(), SitesFragment())
 
     override fun inject() {
         fragmentComponent.inject(this)

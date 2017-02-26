@@ -17,8 +17,9 @@ import io.reactivex.Observable
  * Created by zhaowei on 2017/2/11.
  */
 @BindingAdapter(value = *arrayOf("imageUrl", "thumbnail", "maxSize"), requireAll = false)
-fun SimpleDraweeView.loadImage(imageUrl: String, thumbnail: String?, maxSize: Int) =
+fun SimpleDraweeView.loadImage(imageUrl: String?, thumbnail: String?, maxSize: Int) =
         Observable.just(ImageDecodeOptions.newBuilder().setDecodePreviewFrame(true).build())
+                .filter { !TextUtils.isEmpty(imageUrl) }
                 .map { options ->
                     ImageRequestBuilder.newBuilderWithSource(Uri.parse(imageUrl))
                             .setImageDecodeOptions(options)
