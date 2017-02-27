@@ -9,6 +9,7 @@ import android.databinding.InverseBindingListener
 import android.databinding.InverseBindingMethod
 import android.databinding.InverseBindingMethods
 import android.support.v4.widget.SwipeRefreshLayout
+import io.reactivex.Observable
 
 /**
  * zhaowei
@@ -18,7 +19,8 @@ import android.support.v4.widget.SwipeRefreshLayout
 
 @BindingAdapter("topOffset")
 fun SwipeRefreshLayout.setTopOffset(offset: Int) {
-    setProgressViewOffset(false, (offset * 0.5).toInt(), (offset * 1.5).toInt())
+    Observable.just(offset).filter { offset > 0 }
+            .subscribe { setProgressViewOffset(false, (it * 0.5).toInt(), (it * 1.5).toInt()) }
 }
 
 @BindingAdapter("refreshing")

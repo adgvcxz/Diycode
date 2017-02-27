@@ -21,13 +21,14 @@ import java.lang.ref.WeakReference
  * zhaowei
  * Created by zhaowei on 2017/2/16.
  */
-class BaseRecyclerViewAdapter<in T : BaseViewModel> : RecyclerView.Adapter<ViewHolder>() {
+class BaseRecyclerViewAdapter<T : BaseViewModel> : RecyclerView.Adapter<ViewHolder>() {
 
     private var items: List<T>? = null
     private var inflater: LayoutInflater? = null
     private val callback = WeakReferenceOnListChangedCallback(this)
     private var recyclerView: RecyclerView? = null
     private val firstModel: EmptyViewModel by lazy { EmptyViewModel() }
+    var onClickItemListener: OnRecyclerViewItemClickListener<T>? = null
     var loadMoreListener: OnLoadMoreListener? = null
 
     val loadingModel: LoadingViewModel by lazy {

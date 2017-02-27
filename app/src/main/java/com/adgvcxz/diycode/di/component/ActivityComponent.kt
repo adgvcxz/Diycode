@@ -7,6 +7,7 @@ import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.rxbus.RxBus
 import com.adgvcxz.diycode.ui.login.LoginActivity
 import com.adgvcxz.diycode.ui.main.MainActivity
+import com.adgvcxz.diycode.ui.topic.TopicDetailActivity
 import dagger.Component
 
 /**
@@ -26,5 +27,7 @@ interface ActivityComponent {
     fun inject(mainActivity: MainActivity)
 
     fun inject(loginActivity: LoginActivity)
+
+    fun inject(topicDetailActivity: TopicDetailActivity)
 
 }

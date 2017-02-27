@@ -1,5 +1,6 @@
 package com.adgvcxz.diycode.ui.base
 
+import android.app.Activity
 import com.adgvcxz.diycode.binding.base.RxViewModel
 import com.adgvcxz.diycode.util.FragmentLifeCycleEvent
 import com.adgvcxz.diycode.util.extensions.httpScheduler
@@ -7,6 +8,7 @@ import com.adgvcxz.diycode.util.extensions.takeFirst
 import io.reactivex.ObservableTransformer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
 /**
  * zhaowei

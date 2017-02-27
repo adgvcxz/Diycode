@@ -17,6 +17,7 @@
         app:loadAll="@{model.loadAll}"
         app:loadMore="@{model.loadMore}"
         app:loadMoreListener="@{() -> model.loadData()}"
-        app:loadingStatus="@{model.loadingStatus}" />
+        app:loadingStatus="@{model.loadingStatus}"
+        app:onClickItemListener="@{(v) -> model.onClickItem(v)}" />
 
 </layout>

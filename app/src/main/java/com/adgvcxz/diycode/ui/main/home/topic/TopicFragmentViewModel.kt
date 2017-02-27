@@ -1,5 +1,6 @@
 package com.adgvcxz.diycode.ui.main.home.topic
 
+import android.app.Activity
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.bean.Topic
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
@@ -17,6 +18,9 @@ import javax.inject.Inject
  */
 
 class TopicFragmentViewModel @Inject constructor(private val apiService: ApiService) : BaseFragmentViewModel() {
+
+    @Inject
+    lateinit var activity: Activity
 
     val listViewModel = TopicsViewModel()
 
@@ -39,7 +43,9 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
             return apiService.getTopics(offset = offset)
                     .compose(httpScheduler<List<Topic>>())
                     .flatMapIterable { it }
-                    .collect({ ArrayList<TopicViewModel>() }, { list, bean -> list.add(TopicViewModel(bean)) })
+                    .collect({ ArrayList<TopicViewModel>() }, { list, bean ->
+                        list.add(TopicViewModel(bean))
+                    })
                     .toObservable()
         }
     }

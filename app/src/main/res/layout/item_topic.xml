@@ -17,8 +17,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFFFFF"
-            android:onClick="@{() -> model.click()}"
+            android:background="?attr/selectableItemBackground"
+            android:onClick="@{(v) -> model.click(v)}"
             android:orientation="horizontal">
 
             <com.facebook.drawee.view.SimpleDraweeView

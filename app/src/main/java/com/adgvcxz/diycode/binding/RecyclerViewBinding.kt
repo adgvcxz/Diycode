@@ -7,6 +7,7 @@ import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.base.LoadingViewModel
 import com.adgvcxz.diycode.binding.recycler.BaseRecyclerViewAdapter
 import com.adgvcxz.diycode.binding.recycler.OnLoadMoreListener
+import com.adgvcxz.diycode.binding.recycler.OnRecyclerViewItemClickListener
 import io.reactivex.Observable
 import java.util.*
 
@@ -70,4 +71,12 @@ fun <T : BaseViewModel> RecyclerView.setTopMargin(margin: Int) {
     Observable.just(adapter).ofType(BaseRecyclerViewAdapter::class.java)
             .filter { it.firstTopMargin != margin }
             .subscribe { it.firstTopMargin = margin }
+}
+
+@Suppress("UNCHECKED_CAST")
+@BindingAdapter("onClickItemListener")
+fun <T : BaseViewModel> RecyclerView.setOnClickItemListener(listener: OnRecyclerViewItemClickListener<T>) {
+    ensureAdapterNotNull<T>()
+    Observable.just(adapter).ofType(BaseRecyclerViewAdapter::class.java)
+            .subscribe { (it as BaseRecyclerViewAdapter<T>).onClickItemListener = listener}
 }

@@ -39,8 +39,13 @@ abstract class RecyclerViewModel<T : BaseViewModel> {
                     offset = items.size
                 }) {
                     loadingStatus.set(LoadingViewModel.LoadFailed)
+                    it.printStackTrace()
                 }
     }
 
     abstract fun request(offset: Int): Observable<ArrayList<T>>
+
+    open fun onClickItem(t: T) {
+
+    }
 }

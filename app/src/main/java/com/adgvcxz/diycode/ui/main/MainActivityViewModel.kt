@@ -1,6 +1,5 @@
 package com.adgvcxz.diycode.ui.main
 
-import android.app.Activity
 import android.databinding.ObservableBoolean
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.binding.observable.ObservableString

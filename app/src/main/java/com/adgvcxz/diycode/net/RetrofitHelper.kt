@@ -26,10 +26,12 @@ class RetrofitHelper @Inject constructor() {
         builder.initX509()
         if (Config.Debug) {
             val loggingInterceptor = HttpLoggingInterceptor()
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            loggingInterceptor.level = HttpLoggingInterceptor.Level.BASIC
             builder.addInterceptor(loggingInterceptor)
         }
-        val gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create()
+        val gson = GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
+                .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSZ")
+                .create()
         val retrofit = Retrofit.Builder().baseUrl("http://diycode.cc/api/v3/")
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))

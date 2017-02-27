@@ -13,38 +13,38 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingLeft="8dp">
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_margin="8dp"
                 app:actualImageScaleType="focusCrop"
+                app:placeholderImage="@mipmap/ic_launcher"
                 app:imageUrl="@{model.site1.avatar}"
                 app:roundedCornerRadius="2dp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{model.site1.name}"
-                />
+                android:paddingLeft="8dp"
+                android:text="@{model.site1.name}" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:gravity="center"
             android:orientation="horizontal"
-            android:visibility="@{model.site2 == null ? View.GONE : View.VISIBLE}">
+            android:paddingLeft="8dp">
 
             <com.facebook.drawee.view.SimpleDraweeView
                 android:layout_width="24dp"
@@ -57,8 +57,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{model.site2.name}"
-                />
+                android:paddingLeft="8dp"
+                android:text="@{model.site2.name}" />
         </LinearLayout>
 
     </LinearLayout>

@@ -1,15 +1,15 @@
 package com.adgvcxz.diycode.bean
 
-import android.databinding.BaseObservable
+import com.google.gson.annotations.SerializedName
 import java.util.*
 
 
 /**
  * zhaowei
- * Created by zhaowei on 2017/2/17.
+ * Created by zhaowei on 2017/2/27.
  */
 
-class Topic : BaseObservable() {
+class TopicDetail {
     var id: Int = 0
     lateinit var title: String
     lateinit var createdAt: Date
@@ -21,7 +21,14 @@ class Topic : BaseObservable() {
     var lastReplyUserId: Int? = null
     var lastReplyUserLogin: String? = null
     lateinit var user: SimpleUser
-    var isDeleted: Boolean = false
-    var isExcellent: Boolean = false
+    var deleted: Boolean = false
+    var excellent: Boolean = false
     lateinit var abilities: Abilities
+    lateinit var body: String
+    var hits: Int = 0
+    var likesCount: Int = 0
+    var suggestedAt: String? = null
+    var followed: Boolean = false
+    var liked: Boolean = false
+    var favorited: Boolean = false
 }

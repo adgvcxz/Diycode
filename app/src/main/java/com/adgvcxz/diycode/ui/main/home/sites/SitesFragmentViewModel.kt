@@ -6,6 +6,8 @@ import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
 import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
+import com.adgvcxz.diycode.util.extensions.getActionBarHeight
+import com.adgvcxz.diycode.util.extensions.getContext
 import io.reactivex.Observable
 import java.util.*
 import javax.inject.Inject
@@ -28,6 +30,10 @@ class SitesFragmentViewModel @Inject constructor(private val apiService: ApiServ
     override fun contentId(): Int = R.layout.fragment_sites
 
     inner class SitesViewModel : RefreshRecyclerViewModel<BaseViewModel>() {
+
+        init {
+            topMargin.set(getContext().getActionBarHeight() * 2)
+        }
 
         override fun request(offset: Int): Observable<ArrayList<BaseViewModel>> {
             return apiService.getSites()

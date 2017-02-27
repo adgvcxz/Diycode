@@ -32,6 +32,7 @@
             android:name=".ui.login.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_login" />
+        <activity android:name=".ui.topic.TopicDetailActivity" />
     </application>
 
 </manifest>

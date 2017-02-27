@@ -1,9 +1,6 @@
 package com.adgvcxz.diycode.net
 
-import com.adgvcxz.diycode.bean.News
-import com.adgvcxz.diycode.bean.SiteBean
-import com.adgvcxz.diycode.bean.Token
-import com.adgvcxz.diycode.bean.Topic
+import com.adgvcxz.diycode.bean.*
 import io.reactivex.Observable
 import retrofit2.http.*
 
@@ -30,8 +27,13 @@ interface ApiService {
 
     @GET("news.json")
     fun getNews(@Query("node_id") nodeId: Int?,
-                 @Query("offset") offset: Int = 0, @Query("limit") limit: Int = Limit): Observable<List<News>>
+                @Query("offset") offset: Int = 0, @Query("limit") limit: Int = Limit): Observable<List<News>>
+
     @GET("sites.json")
     fun getSites(): Observable<List<SiteBean>>
+
+    @GET("topics/{id}.json")
+    fun getTopicDetail(@Path("id") id: Int): Observable<TopicDetail>
+
 }
 
