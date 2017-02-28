@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.ui.topic.TopicBodyViewModel" />
+            type="com.adgvcxz.diycode.ui.topic.TopicReplyViewModel" />
     </data>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -16,6 +16,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:markText="@{model.body}" />
+            android:text="@{model.reply.body}" />
+
     </LinearLayout>
 </layout>

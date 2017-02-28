@@ -35,5 +35,10 @@ interface ApiService {
     @GET("topics/{id}.json")
     fun getTopicDetail(@Path("id") id: Int): Observable<TopicDetail>
 
+    @GET("topics/{id}/replies.json")
+    fun getTopicReplies(@Path("id") id: Int, @Query("offset") offset: Int = 0,
+                        @Query("limit") limit: Int = Limit): Observable<List<TopicReply>>
+
+
 }
 

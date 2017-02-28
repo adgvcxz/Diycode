@@ -33,14 +33,18 @@ abstract class RecyclerViewModel<T : BaseViewModel> {
                     } else {
                         items.addAll(it)
                     }
-                    if (it.size < ApiService.Limit) {
-                        loadAll.set(true)
-                    }
+                    updateLoadAll(it)
                     offset = items.size
                 }) {
                     loadingStatus.set(LoadingViewModel.LoadFailed)
                     it.printStackTrace()
                 }
+    }
+
+    open fun updateLoadAll(it: ArrayList<T>) {
+        if (it.size < ApiService.Limit) {
+            loadAll.set(true)
+        }
     }
 
     abstract fun request(offset: Int): Observable<ArrayList<T>>

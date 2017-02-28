@@ -1,6 +1,7 @@
 package com.adgvcxz.diycode.binding
 
 import android.databinding.BindingAdapter
+import android.text.Html
 import android.widget.TextView
 
 /**
@@ -10,5 +11,5 @@ import android.widget.TextView
 
 @BindingAdapter("markText")
 fun TextView.makeDownText(text: String) {
-    setText(text)
+    setText(Html.fromHtml(text))
 }

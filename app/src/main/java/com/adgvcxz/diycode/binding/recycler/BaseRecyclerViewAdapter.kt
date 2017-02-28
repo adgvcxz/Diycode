@@ -63,8 +63,9 @@ class BaseRecyclerViewAdapter<T : BaseViewModel> : RecyclerView.Adapter<ViewHold
         }
     var loadAll = true
         set(value) {
+            val count = itemCount
             field = value
-            if (value && loadMore && isNotEmpty() && itemCount > items!!.size) {
+            if (value && loadMore && isNotEmpty() && count > items!!.size) {
                 notifyItemRemoved(itemCount - 1)
             }
         }

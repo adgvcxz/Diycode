@@ -34,10 +34,25 @@ class TopicDetailViewModel @Inject constructor(private val apiService: ApiServic
         }
 
         override fun request(offset: Int): Observable<ArrayList<BaseViewModel>> {
-            return Observable.just(offset)
-                    .flatMap { apiService.getTopicDetail(id) }
-                    .flatMap { Observable.just(ArrayList<BaseViewModel>(Arrays.asList(TopicBodyViewModel(it.body)))) }
-                    .compose(httpScheduler<ArrayList<BaseViewModel>>())
+            if (offset == 0) {
+                return apiService.getTopicDetail(id)
+                        .flatMap { Observable.just(ArrayList<BaseViewModel>(Arrays.asList(TopicBodyViewModel(it.body)))) }
+                        .compose(httpScheduler<ArrayList<BaseViewModel>>())
+            } else {
+                return apiService.getTopicReplies(id = id, offset = offset - 1)
+                        .flatMapIterable { it }
+                        .collect({ ArrayList<BaseViewModel>() }, { list, reply ->
+                            list.add(TopicReplyViewModel(reply))
+                        }).toObservable()
+                        .compose(httpScheduler<ArrayList<BaseViewModel>>())
+            }
+
+        }
+
+        override fun updateLoadAll(it: ArrayList<BaseViewModel>) {
+            if (offset > 0 && it.size < ApiService.Limit) {
+                loadAll.set(true)
+            }
         }
     }
 }
