@@ -9,13 +9,24 @@
             type="com.adgvcxz.diycode.ui.topic.TopicDetailViewModel" />
     </data>
 
-    <FrameLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
-        <include
-            layout="@layout/include_refresh_recycler_view"
-            app:model="@{model.listViewModel}" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    </FrameLayout>
+            <include
+                layout="@layout/include_toolbar" />
+
+            <include
+                layout="@layout/include_refresh_recycler_view"
+                app:model="@{model.listViewModel}" />
+
+        </LinearLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
 </layout>

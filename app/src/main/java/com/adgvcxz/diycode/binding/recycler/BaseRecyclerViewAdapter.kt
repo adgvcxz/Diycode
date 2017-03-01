@@ -61,12 +61,15 @@ class BaseRecyclerViewAdapter<T : BaseViewModel> : RecyclerView.Adapter<ViewHold
                 this.recyclerView?.addOnScrollListener(scrollListener)
             }
         }
+
     var loadAll = true
         set(value) {
             val count = itemCount
             field = value
             if (value && loadMore && isNotEmpty() && count > items!!.size) {
-                notifyItemRemoved(itemCount - 1)
+                notifyItemRemoved(count - 1)
+            } else {
+                notifyItemInserted(count)
             }
         }
 

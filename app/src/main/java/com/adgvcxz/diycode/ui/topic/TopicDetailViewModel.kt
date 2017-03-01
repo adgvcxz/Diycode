@@ -24,6 +24,10 @@ class TopicDetailViewModel @Inject constructor(private val apiService: ApiServic
             listViewModel.refresh.set(true)
         }
 
+    init {
+        title.set("Topic")
+    }
+
     override fun contentId(): Int = R.layout.activity_topic_detail
 
     inner class TopicDetailListViewModel : RefreshRecyclerViewModel<BaseViewModel>() {
@@ -50,9 +54,7 @@ class TopicDetailViewModel @Inject constructor(private val apiService: ApiServic
         }
 
         override fun updateLoadAll(it: ArrayList<BaseViewModel>) {
-            if (offset > 0 && it.size < ApiService.Limit) {
-                loadAll.set(true)
-            }
+            loadAll.set(offset > 0 && it.size < ApiService.Limit)
         }
     }
 }

@@ -1,6 +1,7 @@
 package com.adgvcxz.diycode.ui.base
 
 import com.adgvcxz.diycode.binding.base.RxViewModel
+import com.adgvcxz.diycode.binding.observable.ObservableString
 import com.adgvcxz.diycode.util.ActivityLifeCycleEvent
 import com.adgvcxz.diycode.util.extensions.takeFirst
 import io.reactivex.ObservableTransformer
@@ -13,6 +14,8 @@ import io.reactivex.schedulers.Schedulers
  */
 
 abstract class BaseActivityViewModel: RxViewModel<ActivityLifeCycleEvent>() {
+
+    var title = ObservableString("")
 
     open fun onCreate() {
         lifeCycleNext(ActivityLifeCycleEvent.Create)

@@ -42,9 +42,7 @@ abstract class RecyclerViewModel<T : BaseViewModel> {
     }
 
     open fun updateLoadAll(it: ArrayList<T>) {
-        if (it.size < ApiService.Limit) {
-            loadAll.set(true)
-        }
+        loadAll.set(it.size < ApiService.Limit)
     }
 
     abstract fun request(offset: Int): Observable<ArrayList<T>>

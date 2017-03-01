@@ -34,16 +34,26 @@ fun <T : BaseViewModel> RecyclerView.loadData(items: ArrayList<T>?) {
     }
 }
 
-@BindingAdapter(value = *arrayOf("loadMore", "loadAll"), requireAll = false)
-fun <T : BaseViewModel> RecyclerView.setLoading(loadMore: Boolean, loadAll: Boolean) {
+@BindingAdapter("loadMore")
+fun <T : BaseViewModel> RecyclerView.setLoadMore(loadMore: Boolean) {
     ensureAdapterNotNull<T>()
     Observable.just(adapter).ofType(BaseRecyclerViewAdapter::class.java)
-            .filter { it.loadMore != loadMore || it.loadAll != loadAll }
+            .filter { it.loadMore != loadMore }
             .subscribe {
                 it.loadMore = loadMore
+            }
+}
+
+@BindingAdapter("loadAll")
+fun <T : BaseViewModel> RecyclerView.setLoadAll(loadAll: Boolean) {
+    ensureAdapterNotNull<T>()
+    Observable.just(adapter).ofType(BaseRecyclerViewAdapter::class.java)
+            .filter { it.loadAll != loadAll }
+            .subscribe {
                 it.loadAll = loadAll
             }
 }
+
 
 @Suppress("UNCHECKED_CAST")
 @BindingAdapter("loadMoreListener")
@@ -78,5 +88,5 @@ fun <T : BaseViewModel> RecyclerView.setTopMargin(margin: Int) {
 fun <T : BaseViewModel> RecyclerView.setOnClickItemListener(listener: OnRecyclerViewItemClickListener<T>) {
     ensureAdapterNotNull<T>()
     Observable.just(adapter).ofType(BaseRecyclerViewAdapter::class.java)
-            .subscribe { (it as BaseRecyclerViewAdapter<T>).onClickItemListener = listener}
+            .subscribe { (it as BaseRecyclerViewAdapter<T>).onClickItemListener = listener }
 }

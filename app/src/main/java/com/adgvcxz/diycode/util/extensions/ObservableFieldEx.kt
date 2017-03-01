@@ -4,6 +4,7 @@ import android.databinding.Observable.OnPropertyChangedCallback
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableInt
 import android.databinding.ObservableList.OnListChangedCallback
+import com.adgvcxz.diycode.binding.observable.ObservableString
 import com.adgvcxz.diycode.binding.observable.ResetArrayList
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
@@ -28,6 +29,18 @@ fun ObservableBoolean.rx(): Observable<Boolean> {
 
 fun ObservableInt.rx(): Observable<Int> {
     return Flowable.create<Int>({
+        val callback = object : OnPropertyChangedCallback() {
+            override fun onPropertyChanged(p0: android.databinding.Observable?, p1: Int) {
+                it.onNext(get())
+            }
+        }
+        addOnPropertyChangedCallback(callback)
+        it.setCancellable { removeOnPropertyChangedCallback(callback) }
+    }, BackpressureStrategy.DROP).toObservable()
+}
+
+fun ObservableString.rx(): Observable<String> {
+    return Flowable.create<String>({
         val callback = object : OnPropertyChangedCallback() {
             override fun onPropertyChanged(p0: android.databinding.Observable?, p1: Int) {
                 it.onNext(get())
