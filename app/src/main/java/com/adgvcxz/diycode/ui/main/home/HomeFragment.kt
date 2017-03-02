@@ -8,6 +8,7 @@ import android.view.View
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.databinding.FragmentHomeBinding
 import com.adgvcxz.diycode.ui.base.*
+import com.adgvcxz.diycode.util.extensions.stringArr
 
 /**
  * zhaowei
@@ -24,8 +25,7 @@ class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>() 
 
     override fun initViewAndData(view: View) {
         dataBinding.viewPager.offscreenPageLimit = Math.ceil(fragments.size.toDouble() / 2).toInt()
-        dataBinding.viewPager.adapter = HomeAdapter(childFragmentManager, fragments,
-                activity.resources.getStringArray(R.array.home_tab_titles))
+        dataBinding.viewPager.adapter = HomeAdapter(childFragmentManager, fragments, R.array.home_tab_titles.stringArr())
         dataBinding.tabLayout.setupWithViewPager(dataBinding.viewPager)
     }
 

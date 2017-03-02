@@ -47,12 +47,32 @@
                     android:textColor="@color/firstTextColor"
                     android:textSize="16sp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{model.topic.user.login}"
-                    android:textColor="@color/firstTextColor"
-                    android:textSize="13sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{model.topic.user.login}"
+                        android:textColor="@color/firstTextColor"
+                        android:textSize="13sp" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/firstTextColor"
+                        android:textSize="13sp"
+                        app:timeAgo="@{model.topic.updatedAt}" />
+                </LinearLayout>
+
+
             </LinearLayout>
 
         </LinearLayout>

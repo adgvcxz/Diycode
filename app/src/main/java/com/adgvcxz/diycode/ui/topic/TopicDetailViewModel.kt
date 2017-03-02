@@ -5,6 +5,7 @@ import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
 import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.ui.base.BaseActivityViewModel
+import com.adgvcxz.diycode.util.extensions.string
 import io.reactivex.Observable
 import java.util.*
 import javax.inject.Inject
@@ -25,7 +26,8 @@ class TopicDetailViewModel @Inject constructor(private val apiService: ApiServic
         }
 
     init {
-        title.set("Topic")
+        title.set(R.string.topic.string())
+        backArrow.set(true)
     }
 
     override fun contentId(): Int = R.layout.activity_topic_detail

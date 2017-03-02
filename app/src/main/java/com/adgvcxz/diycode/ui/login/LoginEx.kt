@@ -23,8 +23,11 @@ fun LoginActivityViewModel.verifyLogin(): Observable<Token> {
         if (TextUtils.isEmpty(password.get())) {
             throw Error(PasswordNotNull)
         }
+        progress.set(true)
         apiService.getToken(Config.ClientId, Config.ClientSecret, Config.GrantType, email.get(), password.get())
                 .compose(bindUntilEvent<Token>(ActivityLifeCycleEvent.Destroy))
+                .doOnNext { progress.set(false) }
+                .doOnError { progress.set(false) }
                 .httpScheduler()
     }
 

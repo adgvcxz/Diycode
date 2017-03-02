@@ -1,5 +1,6 @@
 package com.adgvcxz.diycode.ui.base
 
+import android.databinding.ObservableBoolean
 import com.adgvcxz.diycode.binding.base.RxViewModel
 import com.adgvcxz.diycode.binding.observable.ObservableString
 import com.adgvcxz.diycode.util.ActivityLifeCycleEvent
@@ -16,6 +17,7 @@ import io.reactivex.schedulers.Schedulers
 abstract class BaseActivityViewModel: RxViewModel<ActivityLifeCycleEvent>() {
 
     var title = ObservableString("")
+    val backArrow = ObservableBoolean(false)
 
     open fun onCreate() {
         lifeCycleNext(ActivityLifeCycleEvent.Create)

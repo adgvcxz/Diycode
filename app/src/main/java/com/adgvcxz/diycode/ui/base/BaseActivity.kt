@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import android.text.TextUtils
+import android.view.MenuItem
 import com.adgvcxz.diycode.BR
 import com.adgvcxz.diycode.DiyCodeApp
 import com.adgvcxz.diycode.R
@@ -54,6 +55,17 @@ abstract class BaseActivity<T : BaseActivityViewModel, out B : ViewDataBinding> 
             supportActionBar?.title = viewModel.title.get()
         }
         viewModel.title.rx().subscribe { supportActionBar?.title = it }
+        if (viewModel.backArrow.get()) {
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+        viewModel.backArrow.rx().subscribe { supportActionBar?.setDisplayShowHomeEnabled(it) }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        when (item!!.itemId) {
+            android.R.id.home -> finish()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onStop() {
