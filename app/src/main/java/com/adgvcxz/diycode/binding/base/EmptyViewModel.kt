@@ -1,7 +1,6 @@
 package com.adgvcxz.diycode.binding.base
 
 import com.adgvcxz.diycode.R
-import com.adgvcxz.diycode.binding.base.BaseViewModel
 
 /**
  * zhaowei

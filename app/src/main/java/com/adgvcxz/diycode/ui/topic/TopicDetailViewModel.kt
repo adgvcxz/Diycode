@@ -5,9 +5,10 @@ import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
 import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.ui.base.BaseActivityViewModel
+import com.adgvcxz.diycode.util.extensions.formatList
+import com.adgvcxz.diycode.util.extensions.singleToList
 import com.adgvcxz.diycode.util.extensions.string
 import io.reactivex.Observable
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -39,23 +40,20 @@ class TopicDetailViewModel @Inject constructor(private val apiService: ApiServic
             loadMore.set(true)
         }
 
-        override fun request(offset: Int): Observable<ArrayList<BaseViewModel>> {
+        override fun request(offset: Int): Observable<List<BaseViewModel>> {
             if (offset == 0) {
                 return apiService.getTopicDetail(id)
-                        .flatMap { Observable.just(ArrayList<BaseViewModel>(Arrays.asList(TopicBodyViewModel(it.body)))) }
-                        .compose(httpScheduler<ArrayList<BaseViewModel>>())
+                        .singleToList { TopicBodyViewModel(it.body) }
+                        .compose(httpScheduler<List<BaseViewModel>>())
             } else {
                 return apiService.getTopicReplies(id = id, offset = offset - 1)
-                        .flatMapIterable { it }
-                        .collect({ ArrayList<BaseViewModel>() }, { list, reply ->
-                            list.add(TopicReplyViewModel(reply))
-                        }).toObservable()
-                        .compose(httpScheduler<ArrayList<BaseViewModel>>())
+                        .formatList(::TopicReplyViewModel)
+                        .compose(httpScheduler<List<BaseViewModel>>())
             }
 
         }
 
-        override fun updateLoadAll(it: ArrayList<BaseViewModel>) {
+        override fun updateLoadAll(it: List<BaseViewModel>) {
             loadAll.set(offset > 0 && it.size < ApiService.Limit)
         }
     }

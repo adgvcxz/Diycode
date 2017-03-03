@@ -5,10 +5,10 @@ import com.adgvcxz.diycode.bean.News
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
 import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
+import com.adgvcxz.diycode.util.extensions.formatList
 import com.adgvcxz.diycode.util.extensions.getActionBarHeight
 import com.adgvcxz.diycode.util.extensions.getContext
 import io.reactivex.Observable
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -35,12 +35,10 @@ class NewsFragmentViewModel @Inject constructor(private val apiService: ApiServi
             topMargin.set(getContext().getActionBarHeight() * 2)
         }
 
-        override fun request(offset: Int): Observable<ArrayList<NewsViewModel>> {
+        override fun request(offset: Int): Observable<List<NewsViewModel>> {
             return apiService.getNews(nodeId = null, offset = offset)
                     .compose(httpScheduler<List<News>>())
-                    .flatMapIterable { it }
-                    .collect({ ArrayList<NewsViewModel>() }, { list, news -> list.add(NewsViewModel(news)) })
-                    .toObservable()
+                    .formatList(::NewsViewModel)
         }
     }
 }

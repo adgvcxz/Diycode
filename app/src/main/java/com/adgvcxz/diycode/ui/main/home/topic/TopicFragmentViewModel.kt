@@ -6,6 +6,7 @@ import com.adgvcxz.diycode.bean.Topic
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
 import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
+import com.adgvcxz.diycode.util.extensions.formatList
 import com.adgvcxz.diycode.util.extensions.getActionBarHeight
 import com.adgvcxz.diycode.util.extensions.getContext
 import io.reactivex.Observable
@@ -39,14 +40,10 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
             topMargin.set(getContext().getActionBarHeight() * 2)
         }
 
-        override fun request(offset: Int): Observable<ArrayList<TopicViewModel>> {
+        override fun request(offset: Int): Observable<List<TopicViewModel>> {
             return apiService.getTopics(offset = offset)
                     .compose(httpScheduler<List<Topic>>())
-                    .flatMapIterable { it }
-                    .collect({ ArrayList<TopicViewModel>() }, { list, bean ->
-                        list.add(TopicViewModel(bean))
-                    })
-                    .toObservable()
+                    .formatList(::TopicViewModel)
         }
     }
 }

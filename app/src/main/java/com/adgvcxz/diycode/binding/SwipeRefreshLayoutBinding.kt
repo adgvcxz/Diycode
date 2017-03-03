@@ -2,12 +2,13 @@
         InverseBindingMethod(type = SwipeRefreshLayout::class, attribute = "refreshing", method = "isRefreshing")
 )
 
+@file:BindingMethods(
+        BindingMethod(type = SwipeRefreshLayout::class, attribute = "refreshing", method = "setRefreshing")
+)
+
 package com.adgvcxz.diycode.binding
 
-import android.databinding.BindingAdapter
-import android.databinding.InverseBindingListener
-import android.databinding.InverseBindingMethod
-import android.databinding.InverseBindingMethods
+import android.databinding.*
 import android.support.v4.widget.SwipeRefreshLayout
 import io.reactivex.Observable
 
@@ -21,13 +22,6 @@ import io.reactivex.Observable
 fun SwipeRefreshLayout.setTopOffset(offset: Int) {
     Observable.just(offset).filter { offset > 0 }
             .subscribe { setProgressViewOffset(false, (it * 0.5).toInt(), (it * 1.5).toInt()) }
-}
-
-@BindingAdapter("refreshing")
-fun SwipeRefreshLayout.setRefreshing(refreshing: Boolean) {
-    if (refreshing != isRefreshing) {
-        post { isRefreshing = refreshing }
-    }
 }
 
 @BindingAdapter("refreshingAttrChanged")

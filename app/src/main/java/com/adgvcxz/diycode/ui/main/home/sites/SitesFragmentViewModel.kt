@@ -1,7 +1,6 @@
 package com.adgvcxz.diycode.ui.main.home.sites
 
 import com.adgvcxz.diycode.R
-import com.adgvcxz.diycode.bean.SiteBean
 import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
 import com.adgvcxz.diycode.net.ApiService
@@ -9,7 +8,6 @@ import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
 import com.adgvcxz.diycode.util.extensions.getActionBarHeight
 import com.adgvcxz.diycode.util.extensions.getContext
 import io.reactivex.Observable
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -35,19 +33,24 @@ class SitesFragmentViewModel @Inject constructor(private val apiService: ApiServ
             topMargin.set(getContext().getActionBarHeight() * 2)
         }
 
-        override fun request(offset: Int): Observable<ArrayList<BaseViewModel>> {
-            return apiService.getSites()
-                    .compose(httpScheduler<List<SiteBean>>())
-                    .flatMapIterable { it }
-                    .collect({ ArrayList<BaseViewModel>() }, { list, bean ->
-                        list.add(SiteTitleViewModel(bean.name))
-                        if (bean.sites.size % 2 == 0) {
-                            (0..(bean.sites.size - 1) step 2).mapTo(list) { SiteViewModel(bean.sites[it], bean.sites[it + 1]) }
+        override fun request(offset: Int): Observable<List<BaseViewModel>> {
+            return apiService.getSites().flatMapIterable { it }
+                    .flatMap {
+                        val list: List<BaseViewModel> = ArrayList()
+                        (list as ArrayList<BaseViewModel>).add(SiteTitleViewModel(it.name))
+                        val sites = it.sites
+                        if (sites.size % 2 == 0) {
+                            (0..(sites.size - 1) step 2).mapTo(list) { SiteViewModel(sites[it], sites[it + 1]) }
                         } else {
-                            (0..(bean.sites.size - 2) step 2).mapTo(list) { SiteViewModel(bean.sites[it], bean.sites[it + 1]) }
-                            list.add(SiteViewModel(bean.sites[bean.sites.size - 1], null))
+                            (0..(sites.size - 2) step 2).mapTo(list) { SiteViewModel(sites[it], sites[it + 1]) }
+                            list.add(SiteViewModel(it.sites[it.sites.size - 1], null))
                         }
-                    }).toObservable()
+                        Observable.fromArray(list)
+                    }
+                    .flatMapIterable { it }
+                    .toList()
+                    .toObservable()
+                    .compose(httpScheduler<List<BaseViewModel>>())
         }
     }
 }

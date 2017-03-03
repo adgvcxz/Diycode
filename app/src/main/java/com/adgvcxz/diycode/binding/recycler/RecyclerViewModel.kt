@@ -41,11 +41,11 @@ abstract class RecyclerViewModel<T : BaseViewModel> {
                 }
     }
 
-    open fun updateLoadAll(it: ArrayList<T>) {
+    open fun updateLoadAll(it: List<T>) {
         loadAll.set(it.size < ApiService.Limit)
     }
 
-    abstract fun request(offset: Int): Observable<ArrayList<T>>
+    abstract fun request(offset: Int): Observable<List<T>>
 
     open fun onClickItem(t: T) {
 
