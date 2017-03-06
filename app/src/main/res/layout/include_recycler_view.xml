@@ -16,8 +16,9 @@
         app:items="@{model.items}"
         app:loadAll="@{model.loadAll}"
         app:loadMore="@{model.loadMore}"
-        app:loadMoreListener="@{() -> model.loadData()}"
+        app:loadMoreListener="@{model::loadData}"
         app:loadingStatus="@{model.loadingStatus}"
+        app:layoutManager="@{(view) -> model.createLayoutManager(view)}"
         app:onClickItemListener="@{(v) -> model.onClickItem(v)}" />
 
 </layout>

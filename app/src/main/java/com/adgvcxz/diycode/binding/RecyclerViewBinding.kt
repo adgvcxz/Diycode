@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.base.LoadingViewModel
 import com.adgvcxz.diycode.binding.recycler.BaseRecyclerViewAdapter
+import com.adgvcxz.diycode.binding.recycler.LayoutManagerFactory
 import com.adgvcxz.diycode.binding.recycler.OnLoadMoreListener
 import com.adgvcxz.diycode.binding.recycler.OnRecyclerViewItemClickListener
 import io.reactivex.Observable
@@ -26,11 +27,17 @@ fun <T : BaseViewModel> RecyclerView.ensureAdapterNotNull() {
 @BindingAdapter("items")
 fun <T : BaseViewModel> RecyclerView.loadData(items: ArrayList<T>?) {
     if (items != null) {
-        if (layoutManager == null) {
-            layoutManager = LinearLayoutManager(context)
-        }
         ensureAdapterNotNull<T>()
         (adapter as BaseRecyclerViewAdapter<T>).setList(items)
+    }
+}
+
+@BindingAdapter("layoutManager")
+fun RecyclerView.setLayoutManager(factory: LayoutManagerFactory?) {
+    if (this.layoutManager == null) {
+        post {
+            this.layoutManager = factory?.createLayoutManager(this)
+        }
     }
 }
 

@@ -2,12 +2,14 @@ package com.adgvcxz.diycode.binding.recycler
 
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableInt
+import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.support.v7.widget.RecyclerView.LayoutManager
 import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.base.LoadingViewModel
 import com.adgvcxz.diycode.binding.observable.ResetArrayList
 import com.adgvcxz.diycode.net.ApiService
 import io.reactivex.Observable
-import java.util.*
 
 /**
  * zhaowei
@@ -49,5 +51,9 @@ abstract class RecyclerViewModel<T : BaseViewModel> {
 
     open fun onClickItem(t: T) {
 
+    }
+
+    open fun createLayoutManager(recyclerView: RecyclerView): LayoutManager {
+        return LinearLayoutManager(recyclerView.context)
     }
 }
