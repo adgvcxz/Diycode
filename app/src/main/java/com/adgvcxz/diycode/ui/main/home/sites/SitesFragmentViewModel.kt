@@ -1,5 +1,7 @@
 package com.adgvcxz.diycode.ui.main.home.sites
 
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.binding.base.BaseViewModel
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
@@ -38,19 +40,28 @@ class SitesFragmentViewModel @Inject constructor(private val apiService: ApiServ
                     .flatMap {
                         val list: List<BaseViewModel> = ArrayList()
                         (list as ArrayList<BaseViewModel>).add(SiteTitleViewModel(it.name))
-                        val sites = it.sites
-                        if (sites.size % 2 == 0) {
-                            (0..(sites.size - 1) step 2).mapTo(list) { SiteViewModel(sites[it], sites[it + 1]) }
-                        } else {
-                            (0..(sites.size - 2) step 2).mapTo(list) { SiteViewModel(sites[it], sites[it + 1]) }
-                            list.add(SiteViewModel(it.sites[it.sites.size - 1], null))
-                        }
+                        it.sites.mapTo(list, ::SiteViewModel)
                         Observable.fromArray(list)
                     }
                     .flatMapIterable { it }
                     .toList()
                     .toObservable()
                     .compose(httpScheduler<List<BaseViewModel>>())
+        }
+
+        override fun createLayoutManager(recyclerView: RecyclerView): RecyclerView.LayoutManager {
+            val layoutManager = GridLayoutManager(recyclerView.context, 2)
+            layoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    if (position >= 1 && position <= items.size) {
+                        if (items[position - 1] is SiteTitleViewModel) {
+                            return 2
+                        }
+                    }
+                    return 1
+                }
+            }
+            return layoutManager
         }
     }
 }

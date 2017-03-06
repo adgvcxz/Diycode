@@ -9,7 +9,7 @@ import com.adgvcxz.diycode.binding.base.BaseViewModel
  * Created by zhaowei on 2017/2/26.
  */
 
-class SiteViewModel(val site1: Site, val site2: Site?) : BaseViewModel() {
+class SiteViewModel(val site: Site) : BaseViewModel() {
 
     override fun contentId(): Int = R.layout.item_site
 
