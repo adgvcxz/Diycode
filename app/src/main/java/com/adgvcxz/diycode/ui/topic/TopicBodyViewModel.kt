@@ -9,6 +9,7 @@ import com.adgvcxz.diycode.binding.base.BaseViewModel
  */
 
 class TopicBodyViewModel(val body: String) : BaseViewModel() {
+
     override fun contentId(): Int = R.layout.item_topic_body
 
 }
