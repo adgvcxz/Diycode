@@ -4,6 +4,7 @@ import android.databinding.BindingAdapter
 import android.text.Html
 import android.widget.TextView
 import com.adgvcxz.diycode.util.extensions.ago
+import com.adgvcxz.diycode.widget.MarkdownView
 import java.util.*
 
 /**
@@ -14,6 +15,11 @@ import java.util.*
 @BindingAdapter("markText")
 fun TextView.makeDownText(text: String) {
     setText(Html.fromHtml(text))
+}
+
+@BindingAdapter("markText")
+fun MarkdownView.markDownText(text: String) {
+    markdownText = text
 }
 
 @BindingAdapter("timeAgo")
