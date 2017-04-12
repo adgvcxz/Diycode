@@ -19,14 +19,14 @@
             android:layout_height="188dp"
             android:background="@color/colorAccent">
 
-            <com.facebook.drawee.view.SimpleDraweeView
+            <ImageView
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="32dp"
                 android:onClick="@{model.onClickAvatar}"
                 app:imageUrl="@{model.avatar}"
-                app:placeholderImage="@mipmap/ic_launcher" />
+                app:placeholder="@{model.placeholder}" />
 
             <TextView
                 android:layout_width="wrap_content"

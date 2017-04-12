@@ -20,6 +20,7 @@ class DrawerMenuFragmentViewModel @Inject constructor() : BaseFragmentViewModel(
     lateinit var activity: Activity
 
     val avatar = ObservableString("https://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo_top_ca79a146.png")
+    val placeholder = R.mipmap.ic_launcher
     var name = ObservableString("${System.currentTimeMillis()}")
 
     fun onClickAvatar(view: View) = view.context.startActivity(Intent(view.context, LoginActivity::class.java))

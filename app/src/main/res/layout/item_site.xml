@@ -17,14 +17,11 @@
         android:orientation="horizontal">
 
 
-        <com.facebook.drawee.view.SimpleDraweeView
+        <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_margin="8dp"
-            app:actualImageScaleType="focusCrop"
-            app:imageUrl="@{model.site.avatar}"
-            app:placeholderImage="@mipmap/ic_launcher"
-            app:roundedCornerRadius="2dp" />
+            app:imageUrl="@{model.site.avatar}" />
 
         <TextView
             android:layout_width="wrap_content"

@@ -16,7 +16,6 @@
         <com.adgvcxz.diycode.widget.MarkdownView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:isLoadFinished="@={model.isLoadHtmlFinished}"
             app:markText="@{model.body}" />
     </LinearLayout>
 </layout>
