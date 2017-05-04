@@ -28,10 +28,18 @@ abstract class BaseFragment<T : BaseFragmentViewModel, out B : ViewDataBinding> 
     }
 
     val fragmentComponent: FragmentComponent by lazy {
-        DaggerFragmentComponent.builder()
-                .activityComponent((activity as BaseActivity<*, *>).activityComponent)
-                .fragmentModule(FragmentModule(this))
-                .build()
+        val activity = this.activity
+        if (activity is BaseActivity<*, *>) {
+            DaggerFragmentComponent.builder()
+                    .activityComponent(activity.activityComponent)
+                    .fragmentModule(FragmentModule(this))
+                    .build()
+        } else {
+            DaggerFragmentComponent.builder()
+                    .activityComponent((activity as BaseActivityNew<*, *, *>).activityComponent)
+                    .fragmentModule(FragmentModule(this))
+                    .build()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {

@@ -1,12 +1,15 @@
 package com.adgvcxz.diycode.ui.login
 
 import android.databinding.ObservableBoolean
-import com.adgvcxz.diycode.R
+import android.util.Log
+import com.adgvcxz.IAction
+import com.adgvcxz.IMutation
+import com.adgvcxz.IState
+import com.adgvcxz.ViewModel
 import com.adgvcxz.diycode.binding.observable.ObservableString
-import com.adgvcxz.diycode.net.ApiService
-import com.adgvcxz.diycode.ui.base.BaseActivityViewModel
-import com.adgvcxz.diycode.util.extensions.string
-import com.adgvcxz.diycode.util.extensions.toast
+import com.adgvcxz.diycode.ui.login.LoginActivityViewModel.State
+import io.reactivex.Observable
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -14,26 +17,46 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/2/13.
  */
 
-class LoginActivityViewModel @Inject constructor() : BaseActivityViewModel() {
+class LoginActivityViewModel @Inject constructor() : ViewModel<State>(State()) {
 
-    @Inject
-    lateinit var apiService: ApiService
-
-    val email = ObservableString("")
-    val password = ObservableString("")
-    val progress = ObservableBoolean(false)
-
-    init {
-        title.set(R.string.app_name.string())
-        backArrow.set(true)
+    class State : IState {
+        val email = ObservableString("")
+        val password = ObservableString("")
+        val progress = ObservableBoolean(false)
     }
 
-    override fun contentId(): Int = R.layout.activity_login
+    enum class Action : IAction {
+        LoginButtonDidClicked
+    }
 
-    fun login() {
-        verifyLogin()
-                .subscribe({
+    enum class Mutation(var value: Any? = null) : IMutation {
+        Login,
+        ShowProgress(value = true);
+    }
 
-                }, Throwable::toast)
+    override fun mutate(action: IAction): Observable<IMutation> {
+        when (action) {
+            Action.LoginButtonDidClicked -> {
+                val showProgress = Observable.just(Mutation.ShowProgress)
+                val login = Observable.just(Mutation.Login).delay(3, TimeUnit.SECONDS)
+                val hideProgress = Observable.just(Mutation.ShowProgress).doOnNext { it.value = false }
+                return Observable.concat(showProgress, login, hideProgress)
+            }
+        }
+        return super.mutate(action)
+    }
+
+    override fun scan(state: State, mutation: IMutation): State {
+        when (mutation) {
+            Mutation.ShowProgress -> {
+                if (!((mutation as Mutation).value as Boolean)) {
+                    state.email.set("")
+                    state.password.set("")
+                }
+                state.progress.set(mutation.value as Boolean)
+            }
+            Mutation.Login -> Log.e("zhaow", "Login...")
+        }
+        return state
     }
 }

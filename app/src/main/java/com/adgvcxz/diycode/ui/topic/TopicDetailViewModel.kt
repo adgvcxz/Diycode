@@ -27,7 +27,7 @@ class TopicDetailViewModel @Inject constructor(private val apiService: ApiServic
         }
 
     init {
-        title.set(R.string.topic.string())
+        title.set(R.string.topic.string)
         backArrow.set(true)
     }
 

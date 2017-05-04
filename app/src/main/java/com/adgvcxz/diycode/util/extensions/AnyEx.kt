@@ -15,4 +15,4 @@ fun ensureChangeOnMainThread() {
     }
 }
 
-fun getContext(): Context = DiyCodeApp.appComponent.getContext()
+val app: DiyCodeApp = DiyCodeApp.appComponent.getContext()

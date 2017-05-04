@@ -8,6 +8,6 @@ import android.support.v4.content.ContextCompat
  * Created by zhaowei on 2017/3/2.
  */
 
-fun Int.string(): String = getContext().getString(this)
-fun Int.stringArr(): Array<String> = getContext().resources.getStringArray(this)
-fun Int.drawable(): Drawable = ContextCompat.getDrawable(getContext(), this)
+val Int.string: String get() = app.getString(this)
+val Int.stringArr: Array<String> get() = app.resources.getStringArray(this)
+fun Int.drawable(): Drawable = ContextCompat.getDrawable(app, this)

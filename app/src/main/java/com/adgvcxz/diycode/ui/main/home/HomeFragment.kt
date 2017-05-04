@@ -25,7 +25,7 @@ class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>() 
 
     override fun initViewAndData(view: View) {
         dataBinding.viewPager.offscreenPageLimit = Math.ceil(fragments.size.toDouble() / 2).toInt()
-        dataBinding.viewPager.adapter = HomeAdapter(childFragmentManager, fragments, R.array.home_tab_titles.stringArr())
+        dataBinding.viewPager.adapter = HomeAdapter(childFragmentManager, fragments, R.array.home_tab_titles.stringArr)
         dataBinding.tabLayout.setupWithViewPager(dataBinding.viewPager)
     }
 

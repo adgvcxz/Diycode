@@ -31,8 +31,8 @@ android {
 
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.android.support:appcompat-v7:25.3.0'
-    compile 'com.android.support:design:25.3.0'
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    compile 'com.android.support:design:25.3.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
 
 
@@ -61,6 +61,10 @@ dependencies {
 
     debugCompile 'com.github.markzhai:blockcanary-android:1.4.1'
     releaseCompile 'com.github.markzhai:blockcanary-no-op:1.4.1'
+
+    compile 'com.github.adgvcxz:viewmodel:0.1.2'
+    compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
+    compile 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0'
 }
 
 repositories {

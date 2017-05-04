@@ -6,11 +6,10 @@ import com.adgvcxz.diycode.bean.Topic
 import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
 import com.adgvcxz.diycode.net.ApiService
 import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
+import com.adgvcxz.diycode.util.extensions.actionBarHeight
+import com.adgvcxz.diycode.util.extensions.app
 import com.adgvcxz.diycode.util.extensions.formatList
-import com.adgvcxz.diycode.util.extensions.getActionBarHeight
-import com.adgvcxz.diycode.util.extensions.getContext
 import io.reactivex.Observable
-import java.util.*
 import javax.inject.Inject
 
 /**
@@ -37,7 +36,7 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
         init {
             loadMore.set(true)
             loadAll.set(false)
-            topMargin.set(getContext().getActionBarHeight() * 2)
+            topMargin.set(app.actionBarHeight * 2)
         }
 
         override fun request(offset: Int): Observable<List<TopicViewModel>> {

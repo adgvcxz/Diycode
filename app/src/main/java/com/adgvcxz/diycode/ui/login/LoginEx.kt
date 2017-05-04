@@ -14,21 +14,21 @@ import io.reactivex.Observable
  * zhaowei
  * Created by zhaowei on 2017/2/14.
  */
-fun LoginActivityViewModel.verifyLogin(): Observable<Token> {
-
-    return Observable.just(email.get()).flatMap {
-        if (TextUtils.isEmpty(email.get())) {
-            throw Error(EmailNotNull)
-        }
-        if (TextUtils.isEmpty(password.get())) {
-            throw Error(PasswordNotNull)
-        }
-        progress.set(true)
-        apiService.getToken(Config.ClientId, Config.ClientSecret, Config.GrantType, email.get(), password.get())
-                .compose(bindUntilEvent<Token>(ActivityLifeCycleEvent.Destroy))
-                .doOnNext { progress.set(false) }
-                .doOnError { progress.set(false) }
-                .httpScheduler()
-    }
-
-}
+//fun LoginActivityViewModel.verifyLogin(): Observable<Token> {
+//
+//    return Observable.just(email.get()).flatMap {
+//        if (TextUtils.isEmpty(email.get())) {
+//            throw Error(EmailNotNull)
+//        }
+//        if (TextUtils.isEmpty(password.get())) {
+//            throw Error(PasswordNotNull)
+//        }
+//        progress.set(true)
+//        apiService.getToken(Config.ClientId, Config.ClientSecret, Config.GrantType, email.get(), password.get())
+//                .compose(bindUntilEvent<Token>(ActivityLifeCycleEvent.Destroy))
+//                .doOnNext { progress.set(false) }
+//                .doOnError { progress.set(false) }
+//                .httpScheduler()
+//    }
+//
+//}
