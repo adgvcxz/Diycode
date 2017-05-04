@@ -19,4 +19,3 @@ Databinding
 等
 
 以及是采用[Kotlin](https://kotlinlang.org/)编写的
-

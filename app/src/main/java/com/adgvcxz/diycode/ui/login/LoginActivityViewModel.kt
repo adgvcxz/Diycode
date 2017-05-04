@@ -37,7 +37,7 @@ class LoginActivityViewModel @Inject constructor() : ViewModel<State>(State()) {
     override fun mutate(action: IAction): Observable<IMutation> {
         when (action) {
             Action.LoginButtonDidClicked -> {
-                val showProgress = Observable.just(Mutation.ShowProgress)
+                val showProgress = Observable.just(Mutation.ShowProgress).doOnNext { it.value = false }
                 val login = Observable.just(Mutation.Login).delay(3, TimeUnit.SECONDS)
                 val hideProgress = Observable.just(Mutation.ShowProgress).doOnNext { it.value = false }
                 return Observable.concat(showProgress, login, hideProgress)
@@ -47,9 +47,9 @@ class LoginActivityViewModel @Inject constructor() : ViewModel<State>(State()) {
     }
 
     override fun scan(state: State, mutation: IMutation): State {
-        when (mutation) {
+        when (mutation as Mutation) {
             Mutation.ShowProgress -> {
-                if (!((mutation as Mutation).value as Boolean)) {
+                if (!(mutation.value as Boolean)) {
                     state.email.set("")
                     state.password.set("")
                 }
