@@ -4,7 +4,9 @@ import android.app.Application
 import com.adgvcxz.diycode.di.component.AppComponent
 import com.adgvcxz.diycode.di.component.DaggerAppComponent
 import com.adgvcxz.diycode.di.module.AppModule
+import com.adgvcxz.diycode.rxbus.RxBusShowToast
 import com.adgvcxz.diycode.util.AppBlockCanaryContext
+import com.adgvcxz.diycode.util.extensions.toast
 import com.github.moduth.blockcanary.BlockCanary
 import com.squareup.leakcanary.LeakCanary
 
@@ -28,6 +30,8 @@ class DiyCodeApp : Application() {
         instance = this
         LeakCanary.install(this)
         BlockCanary.install(this, AppBlockCanaryContext()).start()
+        appComponent.getRxBus().toObservable(RxBusShowToast::class.java)
+                .subscribe { it.content.toast() }
     }
 
 }

@@ -62,11 +62,14 @@ dependencies {
     debugCompile 'com.github.markzhai:blockcanary-android:1.4.1'
     releaseCompile 'com.github.markzhai:blockcanary-no-op:1.4.1'
 
-    compile 'com.github.adgvcxz:viewmodel:0.1.6'
     compile 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     compile 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0'
     compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7:2.0.0'
     compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:2.0.0'
+
+    //My Library
+    compile 'com.github.adgvcxz:viewmodel:0.1.6'
+
 }
 
 repositories {

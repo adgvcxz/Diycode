@@ -1,5 +1,6 @@
 package com.adgvcxz.diycode.net
 
+import com.adgvcxz.diycode.Config
 import com.adgvcxz.diycode.bean.*
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -18,8 +19,10 @@ interface ApiService {
 
     @POST("https://www.diycode.cc/oauth/token")
     @FormUrlEncoded
-    fun getToken(@Field("client_id") clientId: String, @Field("client_secret") clientSecret: String,
-                 @Field("grant_type") grantType: String, @Field("username") username: String,
+    fun getToken(@Field("client_id") clientId: String = Config.ClientId,
+                 @Field("client_secret") clientSecret: String = Config.ClientSecret,
+                 @Field("grant_type") grantType: String = Config.GrantType,
+                 @Field("username") username: String,
                  @Field("password") password: String): Observable<Token>
 
     @GET("topics.json")
