@@ -3,8 +3,8 @@ package com.adgvcxz.diycode.ui.main
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.databinding.ActivityMainBinding
 import com.adgvcxz.diycode.ui.base.BaseActivityNew
-import com.adgvcxz.diycode.ui.base.DrawerMenuFragment
-import com.adgvcxz.diycode.ui.main.MainActivityViewModel.State
+import com.adgvcxz.diycode.ui.main.MainActivityViewModel.Model
+import com.adgvcxz.diycode.ui.main.drawer.DrawerMenuFragment
 import com.adgvcxz.diycode.ui.main.home.HomeFragment
 
 /**
@@ -12,7 +12,7 @@ import com.adgvcxz.diycode.ui.main.home.HomeFragment
  * Created by zhaowei on 2017/2/10.
  */
 
-class MainActivity : BaseActivityNew<ActivityMainBinding, MainActivityViewModel, State>() {
+class MainActivity : BaseActivityNew<ActivityMainBinding, MainActivityViewModel, Model>() {
 
     override fun initInject() {
         activityComponent.inject(this)

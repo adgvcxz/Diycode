@@ -4,10 +4,10 @@ import android.databinding.ObservableBoolean
 import android.util.Log
 import com.adgvcxz.IAction
 import com.adgvcxz.IMutation
-import com.adgvcxz.IState
+import com.adgvcxz.IModel
 import com.adgvcxz.ViewModel
 import com.adgvcxz.diycode.binding.observable.ObservableString
-import com.adgvcxz.diycode.ui.login.LoginActivityViewModel.State
+import com.adgvcxz.diycode.ui.login.LoginActivityViewModel.Model
 import io.reactivex.Observable
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
@@ -17,9 +17,9 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/2/13.
  */
 
-class LoginActivityViewModel @Inject constructor() : ViewModel<State>(State()) {
+class LoginActivityViewModel @Inject constructor() : ViewModel<Model>(Model()) {
 
-    class State : IState {
+    class Model : IModel {
         val email = ObservableString("")
         val password = ObservableString("")
         val progress = ObservableBoolean(false)
@@ -46,17 +46,17 @@ class LoginActivityViewModel @Inject constructor() : ViewModel<State>(State()) {
         return super.mutate(action)
     }
 
-    override fun scan(state: State, mutation: IMutation): State {
+    override fun scan(model: Model, mutation: IMutation): Model {
         when (mutation as Mutation) {
             Mutation.ShowProgress -> {
                 if (!(mutation.value as Boolean)) {
-                    state.email.set("")
-                    state.password.set("")
+                    model.email.set("")
+                    model.password.set("")
                 }
-                state.progress.set(mutation.value as Boolean)
+                model.progress.set(mutation.value as Boolean)
             }
             Mutation.Login -> Log.e("zhaow", "Login...")
         }
-        return state
+        return model
     }
 }

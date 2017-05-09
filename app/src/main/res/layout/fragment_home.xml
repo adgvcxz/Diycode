@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.ui.main.home.HomeFragmentViewModel" />
+            type="com.adgvcxz.diycode.ui.main.home.HomeFragmentViewModel.Model" />
     </data>
 
     <FrameLayout
@@ -23,12 +23,12 @@
             android:layout_height="wrap_content">
 
             <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimary"
                 app:logo="@mipmap/ic_title"
                 app:navigationIcon="@mipmap/ic_left_menu"
-                app:onNavigationClick="@{() -> model.openDrawer()}"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 

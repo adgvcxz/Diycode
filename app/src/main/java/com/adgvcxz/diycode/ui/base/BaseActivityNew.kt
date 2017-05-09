@@ -4,7 +4,7 @@ import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import com.adgvcxz.IState
+import com.adgvcxz.IModel
 import com.adgvcxz.ViewModel
 import com.adgvcxz.diycode.BR
 import com.adgvcxz.diycode.DiyCodeApp
@@ -18,7 +18,7 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/5/4.
  */
 
-abstract class BaseActivityNew<out B: ViewDataBinding, V: ViewModel<S>, S: IState>: AppCompatActivity() {
+abstract class BaseActivityNew<out B: ViewDataBinding, V: ViewModel<M>, M: IModel>: AppCompatActivity() {
 
     abstract val layoutId: Int
 
@@ -39,8 +39,8 @@ abstract class BaseActivityNew<out B: ViewDataBinding, V: ViewModel<S>, S: IStat
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initInject()
-        binding.setVariable(BR.state, viewModel.currentState)
-        viewModel.state.skip(1).subscribe()
+        binding.setVariable(BR.model, viewModel.currentModel)
+        viewModel.model.skip(1).subscribe()
         initBinding()
     }
 

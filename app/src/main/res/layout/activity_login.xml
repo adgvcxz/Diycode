@@ -6,8 +6,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="state"
-            type="com.adgvcxz.diycode.ui.login.LoginActivityViewModel.State" />
+            name="model"
+            type="com.adgvcxz.diycode.ui.login.LoginActivityViewModel.Model" />
     </data>
 
     <android.support.design.widget.CoordinatorLayout
@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:visibility="@{state.progress ? View.VISIBLE : View.GONE}" />
+                    android:visibility="@{model.progress ? View.VISIBLE : View.GONE}" />
 
                 <ScrollView
                     android:id="@+id/login_form"
@@ -64,7 +64,7 @@
                                 android:hint="@string/prompt_email"
                                 android:inputType="textEmailAddress"
                                 android:maxLines="1"
-                                android:text="@={state.email}" />
+                                android:text="@={model.email}" />
 
                         </android.support.design.widget.TextInputLayout>
 
@@ -82,7 +82,7 @@
                                 android:imeOptions="actionUnspecified"
                                 android:inputType="textPassword"
                                 android:maxLines="1"
-                                android:text="@={state.password}" />
+                                android:text="@={model.password}" />
 
                         </android.support.design.widget.TextInputLayout>
 

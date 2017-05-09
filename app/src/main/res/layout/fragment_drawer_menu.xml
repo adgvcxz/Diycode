@@ -6,7 +6,7 @@
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.ui.main.drawer.DrawerMenuFragmentViewModel" />
+            type="com.adgvcxz.diycode.ui.main.drawer.DrawerMenuFragmentViewModel.Model" />
     </data>
 
     <LinearLayout
@@ -20,11 +20,11 @@
             android:background="@color/colorAccent">
 
             <ImageView
+                android:id="@+id/avatar"
                 android:layout_width="64dp"
                 android:layout_height="64dp"
                 android:layout_marginLeft="48dp"
                 android:layout_marginTop="32dp"
-                android:onClick="@{model.onClickAvatar}"
                 app:imageUrl="@{model.avatar}"
                 app:placeholder="@{model.placeholder}" />
 

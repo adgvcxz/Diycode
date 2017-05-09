@@ -13,12 +13,6 @@ import com.adgvcxz.diycode.ui.main.home.topic.TopicFragmentViewModel
  */
 
 
-class DrawerMenuFragment : BaseFragment<DrawerMenuFragmentViewModel, FragmentDrawerMenuBinding>() {
-    override fun inject() {
-        fragmentComponent.inject(this)
-    }
-}
-
 class TopicFragment : BaseFragment<TopicFragmentViewModel, ViewDataBinding>() {
     override fun inject() {
         fragmentComponent.inject(this)

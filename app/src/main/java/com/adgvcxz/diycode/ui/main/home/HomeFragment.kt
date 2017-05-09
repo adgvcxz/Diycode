@@ -4,18 +4,22 @@ import android.databinding.ViewDataBinding
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.view.View
+import com.adgvcxz.bindTo
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.databinding.FragmentHomeBinding
 import com.adgvcxz.diycode.ui.base.*
+import com.adgvcxz.diycode.ui.main.home.HomeFragmentViewModel.Model
 import com.adgvcxz.diycode.util.extensions.stringArr
+import com.jakewharton.rxbinding2.support.v7.widget.navigationClicks
 
 /**
  * zhaowei
  * Created by zhaowei on 2017/2/16.
  */
 
-class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>() {
+class HomeFragment : BaseFragmentNew<FragmentHomeBinding, HomeFragmentViewModel, Model>() {
+
+    override val layoutId: Int = R.layout.fragment_home
 
     val fragments = arrayOf(TopicFragment(), NewsFragment(), SitesFragment())
 
@@ -23,13 +27,17 @@ class HomeFragment : BaseFragment<HomeFragmentViewModel, FragmentHomeBinding>() 
         fragmentComponent.inject(this)
     }
 
-    override fun initViewAndData(view: View) {
-        dataBinding.viewPager.offscreenPageLimit = Math.ceil(fragments.size.toDouble() / 2).toInt()
-        dataBinding.viewPager.adapter = HomeAdapter(childFragmentManager, fragments, R.array.home_tab_titles.stringArr)
-        dataBinding.tabLayout.setupWithViewPager(dataBinding.viewPager)
+
+    override fun initBinding() {
+        binding.viewPager.offscreenPageLimit = Math.ceil(fragments.size.toDouble() / 2).toInt()
+        binding.viewPager.adapter = HomeAdapter(childFragmentManager, fragments, R.array.home_tab_titles.stringArr)
+        binding.tabLayout.setupWithViewPager(binding.viewPager)
+        binding.toolbar.navigationClicks()
+                .map { HomeFragmentViewModel.Action.toolbarNavigationDidClicked }
+                .bindTo(this.viewModel.action)
     }
 
-    class HomeAdapter(fm: FragmentManager,
+    inner class HomeAdapter(fm: FragmentManager,
                       private val fragments: Array<BaseFragment<out BaseFragmentViewModel, ViewDataBinding>>,
                       private val titles: Array<String>): FragmentPagerAdapter(fm) {
 

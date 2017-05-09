@@ -5,8 +5,8 @@
     <data>
 
         <variable
-            name="state"
-            type="com.adgvcxz.diycode.ui.main.MainActivityViewModel.State" />
+            name="model"
+            type="com.adgvcxz.diycode.ui.main.MainActivityViewModel.Model" />
     </data>
 
     <android.support.v4.widget.DrawerLayout
@@ -14,7 +14,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        app:drawerOpen="@={state.drawerOpen}">
+        app:drawerOpen="@={model.drawerOpen}">
 
         <FrameLayout
             android:id="@+id/content_layout"
