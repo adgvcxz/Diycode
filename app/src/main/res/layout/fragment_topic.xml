@@ -8,16 +8,23 @@
 
         <variable
             name="model"
-            type="com.adgvcxz.diycode.ui.main.home.topic.TopicFragmentViewModel" />
+            type="com.adgvcxz.diycode.ui.main.home.topic.TopicFragmentViewModel.TopicFragmentModel" />
+
+        <variable
+            name="listModel"
+            type="com.adgvcxz.recyclerviewmodel.RecyclerViewModel.Model"/>
     </data>
 
-    <FrameLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:topOffset="@{model.topMargin}">
 
-        <include
-            layout="@layout/include_refresh_recycler_view"
-            app:model="@{model.listViewModel}" />
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
-    </FrameLayout>
+    </android.support.v4.widget.SwipeRefreshLayout>
 </layout>

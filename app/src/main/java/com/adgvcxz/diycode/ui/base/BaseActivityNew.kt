@@ -4,8 +4,8 @@ import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import com.adgvcxz.AFViewModel
 import com.adgvcxz.IModel
-import com.adgvcxz.ViewModel
 import com.adgvcxz.diycode.BR
 import com.adgvcxz.diycode.DiyCodeApp
 import com.adgvcxz.diycode.di.component.ActivityComponent
@@ -18,7 +18,7 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/5/4.
  */
 
-abstract class BaseActivityNew<out B: ViewDataBinding, V: ViewModel<M>, M: IModel>: AppCompatActivity() {
+abstract class BaseActivityNew<out B: ViewDataBinding, V: AFViewModel<M>, M: IModel>: AppCompatActivity() {
 
     abstract val layoutId: Int
 
@@ -39,7 +39,7 @@ abstract class BaseActivityNew<out B: ViewDataBinding, V: ViewModel<M>, M: IMode
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         initInject()
-        binding.setVariable(BR.model, viewModel.currentModel)
+        binding.setVariable(BR.model, viewModel.currentModel())
         viewModel.model.skip(1).subscribe()
         initBinding()
     }

@@ -1,14 +1,16 @@
 package com.adgvcxz.diycode.ui.main.home
 
-import android.databinding.ViewDataBinding
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.adgvcxz.bindTo
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.databinding.FragmentHomeBinding
-import com.adgvcxz.diycode.ui.base.*
+import com.adgvcxz.diycode.ui.base.BaseFragmentNew
+import com.adgvcxz.diycode.ui.base.NewsFragment
+import com.adgvcxz.diycode.ui.base.SitesFragment
 import com.adgvcxz.diycode.ui.main.home.HomeFragmentViewModel.Model
+import com.adgvcxz.diycode.ui.main.home.topic.TopicFragment
 import com.adgvcxz.diycode.util.extensions.stringArr
 import com.jakewharton.rxbinding2.support.v7.widget.navigationClicks
 
@@ -38,7 +40,7 @@ class HomeFragment : BaseFragmentNew<FragmentHomeBinding, HomeFragmentViewModel,
     }
 
     inner class HomeAdapter(fm: FragmentManager,
-                      private val fragments: Array<BaseFragment<out BaseFragmentViewModel, ViewDataBinding>>,
+                      private val fragments: Array<Fragment>,
                       private val titles: Array<String>): FragmentPagerAdapter(fm) {
 
         override fun getCount(): Int = fragments.size

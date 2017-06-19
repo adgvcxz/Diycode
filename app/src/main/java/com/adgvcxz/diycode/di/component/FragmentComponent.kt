@@ -5,9 +5,9 @@ import com.adgvcxz.diycode.di.FragmentScope
 import com.adgvcxz.diycode.di.module.FragmentModule
 import com.adgvcxz.diycode.ui.base.NewsFragment
 import com.adgvcxz.diycode.ui.base.SitesFragment
-import com.adgvcxz.diycode.ui.base.TopicFragment
 import com.adgvcxz.diycode.ui.main.drawer.DrawerMenuFragment
 import com.adgvcxz.diycode.ui.main.home.HomeFragment
+import com.adgvcxz.diycode.ui.main.home.topic.TopicFragment
 import dagger.Component
 
 /**

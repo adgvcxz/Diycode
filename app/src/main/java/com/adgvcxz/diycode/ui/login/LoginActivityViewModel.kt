@@ -2,10 +2,7 @@ package com.adgvcxz.diycode.ui.login
 
 import android.databinding.ObservableBoolean
 import android.util.Log
-import com.adgvcxz.IAction
-import com.adgvcxz.IModel
-import com.adgvcxz.IMutation
-import com.adgvcxz.ViewModel
+import com.adgvcxz.*
 import com.adgvcxz.diycode.bean.Token
 import com.adgvcxz.diycode.binding.observable.ObservableString
 import com.adgvcxz.diycode.net.ApiService
@@ -22,7 +19,9 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/2/13.
  */
 
-class LoginActivityViewModel @Inject constructor(private val api: ApiService, private val rxBus: RxBus) : ViewModel<Model>(Model()) {
+class LoginActivityViewModel @Inject constructor(private val api: ApiService, private val rxBus: RxBus) : AFViewModel<Model>() {
+
+    override val initModel: Model = Model()
 
     class Model : IModel {
         val email = ObservableString("")
@@ -30,7 +29,7 @@ class LoginActivityViewModel @Inject constructor(private val api: ApiService, pr
         val progress = ObservableBoolean(false)
     }
 
-    enum class Action : IAction {
+    enum class Action : IEvent {
         LoginButtonDidClicked
     }
 
@@ -39,11 +38,11 @@ class LoginActivityViewModel @Inject constructor(private val api: ApiService, pr
         ShowProgress(value = true);
     }
 
-    override fun mutate(action: IAction): Observable<IMutation> {
-        when (action) {
+    override fun mutate(event: IEvent): Observable<IMutation> {
+        when (event) {
             Action.LoginButtonDidClicked -> {
                 val showProgress = Observable.just(Mutation.ShowProgress).doOnNext { it.value = true }
-                val login = api.getToken(username = currentModel.email.get(), password = currentModel.password.get())
+                val login = api.getToken(username = currentModel().email.get(), password = currentModel().password.get())
                         .httpScheduler()
                         .map { token -> Mutation.SetUser.also { it.value = token } }
                         .doOnError { rxBus.post(RxBusShowToast(it.apiError.message)) }
@@ -52,7 +51,7 @@ class LoginActivityViewModel @Inject constructor(private val api: ApiService, pr
                 return Observable.concat(showProgress, login, hideProgress)
             }
         }
-        return super.mutate(action)
+        return super.mutate(event)
     }
 
     override fun scan(model: Model, mutation: IMutation): Model {

@@ -1,10 +1,9 @@
 package com.adgvcxz.diycode.ui.main
 
 import android.databinding.ObservableBoolean
-import android.util.Log
+import com.adgvcxz.AFViewModel
 import com.adgvcxz.IModel
 import com.adgvcxz.IMutation
-import com.adgvcxz.ViewModel
 import com.adgvcxz.diycode.rxbus.OpenMainDrawer
 import com.adgvcxz.diycode.rxbus.RxBus
 import com.adgvcxz.diycode.ui.main.MainActivityViewModel.Model
@@ -16,7 +15,9 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/2/10.
  */
 
-class MainActivityViewModel @Inject constructor(private val rxBus: RxBus) : ViewModel<Model>(Model()) {
+class MainActivityViewModel @Inject constructor(private val rxBus: RxBus) : AFViewModel<Model>() {
+
+    override val initModel: Model = Model()
 
     class Model : IModel {
         val drawerOpen = ObservableBoolean(false)
@@ -29,10 +30,10 @@ class MainActivityViewModel @Inject constructor(private val rxBus: RxBus) : View
 
     override fun transform(mutation: Observable<IMutation>): Observable<IMutation> {
         val closeDrawer = rxBus.toObservable(OpenMainDrawer::class.java)
-                .filter { this.currentModel.drawerOpen.get() }
+                .filter { this.currentModel().drawerOpen.get() }
                 .map { Mutation.CloseDrawer }
         val openDrawer = rxBus.toObservable(OpenMainDrawer::class.java)
-                .filter { !this.currentModel.drawerOpen.get() }
+                .filter { !this.currentModel().drawerOpen.get() }
                 .map { Mutation.OpenDrawer }
         return Observable.merge(closeDrawer, openDrawer, mutation)
     }

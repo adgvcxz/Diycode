@@ -1,14 +1,12 @@
 package com.adgvcxz.diycode.ui.main.home.topic
 
-import android.app.Activity
-import com.adgvcxz.diycode.R
-import com.adgvcxz.diycode.bean.Topic
-import com.adgvcxz.diycode.binding.recycler.RefreshRecyclerViewModel
+import com.adgvcxz.AFViewModel
+import com.adgvcxz.IModel
 import com.adgvcxz.diycode.net.ApiService
-import com.adgvcxz.diycode.ui.base.BaseFragmentViewModel
 import com.adgvcxz.diycode.util.extensions.actionBarHeight
 import com.adgvcxz.diycode.util.extensions.app
-import com.adgvcxz.diycode.util.extensions.formatList
+import com.adgvcxz.recyclerviewmodel.ListResult
+import com.adgvcxz.recyclerviewmodel.RecyclerViewModel
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -17,32 +15,27 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/2/16.
  */
 
-class TopicFragmentViewModel @Inject constructor(private val apiService: ApiService) : BaseFragmentViewModel() {
+class TopicFragmentViewModel @Inject constructor(private val apiService: ApiService) :
+        AFViewModel<TopicFragmentViewModel.TopicFragmentModel>() {
 
-    @Inject
-    lateinit var activity: Activity
+    override val initModel: TopicFragmentModel = TopicFragmentModel()
+
+    class TopicFragmentModel: IModel {
+        val topMargin: Int = app.actionBarHeight * 2
+    }
 
     val listViewModel = TopicsViewModel()
 
-    override fun contentId(): Int = R.layout.fragment_topic
+    inner class TopicsViewModel : RecyclerViewModel() {
 
-    override fun onCreateView() {
-        super.onCreateView()
-        listViewModel.refresh.set(true)
-    }
+        override val initModel: Model = Model(null, true, true)
 
-    inner class TopicsViewModel : RefreshRecyclerViewModel<TopicViewModel>() {
+        override fun request(refresh: Boolean): Observable<ListResult> {
+            return Observable.just(refresh).map { 0 }
+                    .flatMap { apiService.getTopics(it) }
+                    .map { it.map { TopicViewModel(it) } }
+                    .map { ListResult(it) }
 
-        init {
-            loadMore.set(true)
-            loadAll.set(false)
-            topMargin.set(app.actionBarHeight * 2)
-        }
-
-        override fun request(offset: Int): Observable<List<TopicViewModel>> {
-            return apiService.getTopics(offset = offset)
-                    .compose(httpScheduler<List<Topic>>())
-                    .formatList(::TopicViewModel)
         }
     }
 }

@@ -7,12 +7,13 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.adgvcxz.AFViewModel
 import com.adgvcxz.IModel
-import com.adgvcxz.ViewModel
 import com.adgvcxz.diycode.BR
 import com.adgvcxz.diycode.di.component.DaggerFragmentComponent
 import com.adgvcxz.diycode.di.component.FragmentComponent
 import com.adgvcxz.diycode.di.module.FragmentModule
+import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
 /**
@@ -20,7 +21,9 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/5/8.
  */
 
-abstract class BaseFragmentNew<out B : ViewDataBinding, V : ViewModel<M>, M : IModel> : Fragment() {
+abstract class BaseFragmentNew<out B : ViewDataBinding, V : AFViewModel<M>, M : IModel> : Fragment() {
+
+    val disposables: CompositeDisposable by lazy { CompositeDisposable() }
 
     abstract val layoutId: Int
 
@@ -41,7 +44,7 @@ abstract class BaseFragmentNew<out B : ViewDataBinding, V : ViewModel<M>, M : IM
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         inject()
-        binding.setVariable(BR.model, viewModel.currentModel)
+        binding.setVariable(BR.model, viewModel.currentModel())
         viewModel.model.skip(1).subscribe()
         initBinding()
         return binding.root
@@ -53,5 +56,9 @@ abstract class BaseFragmentNew<out B : ViewDataBinding, V : ViewModel<M>, M : IM
 
     abstract fun inject()
 
+    override fun onDestroyView() {
+        super.onDestroyView()
+        disposables.dispose()
+    }
 
 }

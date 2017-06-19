@@ -13,12 +13,6 @@ import com.adgvcxz.diycode.ui.main.home.topic.TopicFragmentViewModel
  */
 
 
-class TopicFragment : BaseFragment<TopicFragmentViewModel, ViewDataBinding>() {
-    override fun inject() {
-        fragmentComponent.inject(this)
-    }
-}
-
 class NewsFragment: BaseFragment<NewsFragmentViewModel, ViewDataBinding>() {
     override fun inject() {
         fragmentComponent.inject(this)

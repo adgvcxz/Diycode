@@ -1,9 +1,6 @@
 package com.adgvcxz.diycode.ui.main.home
 
-import com.adgvcxz.IAction
-import com.adgvcxz.IModel
-import com.adgvcxz.IMutation
-import com.adgvcxz.ViewModel
+import com.adgvcxz.*
 import com.adgvcxz.diycode.rxbus.OpenMainDrawer
 import com.adgvcxz.diycode.rxbus.RxBus
 import com.adgvcxz.diycode.ui.main.home.HomeFragmentViewModel.Model
@@ -15,18 +12,20 @@ import javax.inject.Inject
  * Created by zhaowei on 2017/2/12.
  */
 
-class HomeFragmentViewModel @Inject constructor(private val rxBus: RxBus) : ViewModel<Model>(Model()) {
+class HomeFragmentViewModel @Inject constructor(private val rxBus: RxBus) : AFViewModel<Model>() {
+
+    override val initModel: Model = Model()
 
     class Model: IModel
 
-    enum class Action: IAction {
+    enum class Action: IEvent {
         toolbarNavigationDidClicked
     }
 
-    override fun mutate(action: IAction): Observable<IMutation> {
-        when(action) {
+    override fun mutate(event: IEvent): Observable<IMutation> {
+        when(event) {
             Action.toolbarNavigationDidClicked -> rxBus.post(OpenMainDrawer())
         }
-        return super.mutate(action)
+        return super.mutate(event)
     }
 }
