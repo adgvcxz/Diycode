@@ -23,7 +23,7 @@ class HomeFragment : BaseFragmentNew<FragmentHomeBinding, HomeFragmentViewModel,
 
     override val layoutId: Int = R.layout.fragment_home
 
-    val fragments: Array<Fragment> = arrayOf(TopicFragment()/*, NewsFragment(), SitesFragment()*/)
+    val fragments: Array<Fragment> = arrayOf(TopicFragment(), NewsFragment(), SitesFragment())
 
     override fun inject() {
         fragmentComponent.inject(this)

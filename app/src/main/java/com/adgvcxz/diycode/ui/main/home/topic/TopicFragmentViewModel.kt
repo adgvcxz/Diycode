@@ -2,11 +2,12 @@ package com.adgvcxz.diycode.ui.main.home.topic
 
 import com.adgvcxz.AFViewModel
 import com.adgvcxz.IModel
+import com.adgvcxz.IMutation
 import com.adgvcxz.diycode.net.ApiService
+import com.adgvcxz.diycode.ui.base.TopMarginRecyclerViewModel
 import com.adgvcxz.diycode.util.extensions.actionBarHeight
 import com.adgvcxz.diycode.util.extensions.app
 import com.adgvcxz.recyclerviewmodel.ListResult
-import com.adgvcxz.recyclerviewmodel.RecyclerViewModel
 import io.reactivex.Observable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
@@ -27,7 +28,7 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
 
     val listViewModel = TopicsViewModel()
 
-    inner class TopicsViewModel : RecyclerViewModel() {
+    inner class TopicsViewModel : TopMarginRecyclerViewModel() {
 
         override val initModel: Model = Model(null, true, true)
 
@@ -35,7 +36,7 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
             return Observable.just(refresh)
                     .map {
                         if (refresh) 0
-                        else currentModel().items.size - 1
+                        else currentModel().items.size - 2
                     }
                     .flatMap {
                         apiService.getTopics(it)
@@ -43,7 +44,10 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
                                 .onErrorReturn { ListResult(null) }
                     }
                     .subscribeOn(Schedulers.io())
+        }
 
+        override fun scan(model: Model, mutation: IMutation): Model {
+            return super.scan(model, mutation)
         }
     }
 }

@@ -6,6 +6,9 @@ import com.adgvcxz.bindTo
 import com.adgvcxz.diycode.R
 import com.adgvcxz.diycode.databinding.FragmentTopicBinding
 import com.adgvcxz.diycode.ui.base.BaseFragmentNew
+import com.adgvcxz.diycode.util.extensions.app
+import com.adgvcxz.diycode.widget.EmptyView
+import com.adgvcxz.diycode.widget.EmptyViewModel
 import com.adgvcxz.diycode.widget.ItemLoadingView
 import com.adgvcxz.recyclerviewmodel.RecyclerAdapter
 import com.adgvcxz.recyclerviewmodel.RecyclerViewModel
@@ -29,6 +32,7 @@ class TopicFragment : BaseFragmentNew<FragmentTopicBinding, TopicFragmentViewMod
     override fun initBinding() {
         val adapter = RecyclerAdapter(viewModel.listViewModel) {
             when(it) {
+                is EmptyViewModel -> EmptyView(viewModel.currentModel().topMargin)
                 is TopicViewModel -> TopicView()
                 else -> ItemLoadingView()
             }
