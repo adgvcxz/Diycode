@@ -8,6 +8,7 @@ import com.adgvcxz.diycode.util.extensions.app
 import com.adgvcxz.recyclerviewmodel.ListResult
 import com.adgvcxz.recyclerviewmodel.RecyclerViewModel
 import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 /**
@@ -20,7 +21,7 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
 
     override val initModel: TopicFragmentModel = TopicFragmentModel()
 
-    class TopicFragmentModel: IModel {
+    class TopicFragmentModel : IModel {
         val topMargin: Int = app.actionBarHeight * 2
     }
 
@@ -31,10 +32,17 @@ class TopicFragmentViewModel @Inject constructor(private val apiService: ApiServ
         override val initModel: Model = Model(null, true, true)
 
         override fun request(refresh: Boolean): Observable<ListResult> {
-            return Observable.just(refresh).map { 0 }
-                    .flatMap { apiService.getTopics(it) }
-                    .map { it.map { TopicViewModel(it) } }
-                    .map { ListResult(it) }
+            return Observable.just(refresh)
+                    .map {
+                        if (refresh) 0
+                        else currentModel().items.size - 1
+                    }
+                    .flatMap {
+                        apiService.getTopics(it)
+                                .map { ListResult(it.map(::TopicViewModel)) }
+                                .onErrorReturn { ListResult(null) }
+                    }
+                    .subscribeOn(Schedulers.io())
 
         }
     }

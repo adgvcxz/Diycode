@@ -71,8 +71,8 @@ dependencies {
     compile 'com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:2.0.0'
 
     //My Library
-    compile 'com.github.adgvcxz.viewModel:viewmodel:0.1.9'
-    compile 'com.github.adgvcxz.viewModel:recyclerviewmodel:0.1.9'
+    compile 'com.github.adgvcxz.ViewModel:viewmodel:0.2.1'
+    compile 'com.github.adgvcxz.ViewModel:recyclerviewmodel:0.2.1'
 
 }
 
