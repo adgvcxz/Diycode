@@ -2,7 +2,10 @@ package com.adgvcxz.diycode.ui.login
 
 import android.databinding.ObservableBoolean
 import android.util.Log
-import com.adgvcxz.*
+import com.adgvcxz.AFViewModel
+import com.adgvcxz.IEvent
+import com.adgvcxz.IModel
+import com.adgvcxz.IMutation
 import com.adgvcxz.diycode.bean.Token
 import com.adgvcxz.diycode.binding.observable.ObservableString
 import com.adgvcxz.diycode.net.ApiService
@@ -33,21 +36,24 @@ class LoginActivityViewModel @Inject constructor(private val api: ApiService, pr
         LoginButtonDidClicked
     }
 
-    enum class Mutation(var value: Any? = null) : IMutation {
-        SetUser(value = Token()),
-        ShowProgress(value = true);
+    sealed class TokenMutation(val value: Token) : IMutation {
+        class SetUser(value: Token) : TokenMutation(value)
+    }
+
+    sealed class BoolMutation(val value: Boolean) : IMutation {
+        class ShowProgress(value: Boolean) : BoolMutation(value)
     }
 
     override fun mutate(event: IEvent): Observable<IMutation> {
         when (event) {
             Action.LoginButtonDidClicked -> {
-                val showProgress = Observable.just(Mutation.ShowProgress).doOnNext { it.value = true }
+                val showProgress = Observable.just(BoolMutation.ShowProgress(true))
                 val login = api.getToken(username = currentModel().email.get(), password = currentModel().password.get())
                         .httpScheduler()
-                        .map { token -> Mutation.SetUser.also { it.value = token } }
+                        .map { TokenMutation.SetUser(it) }
                         .doOnError { rxBus.post(RxBusShowToast(it.apiError.message)) }
                         .onErrorResumeNext(Observable.empty())
-                val hideProgress = Observable.just(Mutation.ShowProgress).doOnNext { it.value = false }
+                val hideProgress = Observable.just(BoolMutation.ShowProgress(false))
                 return Observable.concat(showProgress, login, hideProgress)
             }
         }
@@ -55,16 +61,15 @@ class LoginActivityViewModel @Inject constructor(private val api: ApiService, pr
     }
 
     override fun scan(model: Model, mutation: IMutation): Model {
-        when (mutation as Mutation) {
-            Mutation.ShowProgress -> {
-                if (!(mutation.value as Boolean)) {
+        when (mutation) {
+            is BoolMutation.ShowProgress -> {
+                if (!mutation.value) {
                     model.email.set("")
                     model.password.set("")
                 }
-                model.progress.set(mutation.value as Boolean)
-                Log.e("zhaow", "${mutation.value}")
+                model.progress.set(mutation.value)
             }
-            Mutation.SetUser -> Log.e("zhaow", "登录结果")
+            is TokenMutation.SetUser -> Log.e("zhaow", "登录结果")
         }
         return model
     }
